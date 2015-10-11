@@ -1,32 +1,32 @@
 # Schema Information
 
-## notes
+## reviews
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-title       | string    | not null
+rating      | integer   | not null
 body        | text      | not null
 author_id   | integer   | not null, foreign key (references users), indexed
-notebook_id | integer   | not null, foreign key (references notebooks), indexed
-archived    | boolean   | not null, default: false
+place_id | integer   | not null, foreign key (references places), indexed
 
-## notebooks
+## places
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-author_id   | integer   | not null, foreign key (references users), indexed
-title       | string    | not null
-description | string    | 
+name        | string    | not null
+address     | string    | not null
+web_url     | string    | not null
+lat         | float     | not null
+lng         | float     | not null
 
-## reminders
+##photos
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-user_id     | integer   | not null, foreign key (references users), indexed
-note_id     | string    | not null, foreign key (references notes), indexed
-date        | datetime  | not null
-type        | string    | not null
-prev_id     | integer   | foreign key (references reminders), indexed
+description | string    | not null
+place_id    | integer   | not null
+author_id   | float     | not null
+
 
 ## tags
 column name | data type | details
@@ -39,7 +39,7 @@ column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 name        | string    | not null
-note_id     | integer   | not null, foreign key (references notes), indexed, unique [tag_id]
+place_id     | integer   | not null, foreign key (references notes), indexed
 tag_id      | integer   | not null, foreign key (references tags), indexed
 
 ## users
