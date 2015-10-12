@@ -12,6 +12,9 @@
 * ReviewIndex
   - ReviewIndexItem
 * ReviewForm
+* IndividualInfo
+* Photos
+* Map Component 
 
 ### Stores
 * Review

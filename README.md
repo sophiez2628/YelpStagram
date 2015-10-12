@@ -44,13 +44,13 @@ structure for the main application. After the basic Flux architecture has been
 set up, a Review store will be implemented and a set of actions corresponding to
 the needed CRUD functionality created. Once this is done, I will create React
 views for the Review `Index`, `IndexItem` and `Form`. At the end of Phase 2,
-Reviews can be created, read, edited and destroyed in the browser. Basic styling will be applied. Each place has a page that contains place's information, photos, location on a google map, and reviews.
+Reviews can be created, read, edited and destroyed in the browser. Basic styling will be applied. Each place has a page that contains the place's information(IndividualInfoComponent), photos(PhotosComponent), location on a google map(MapComponent), and reviews(ReviewIndex/ReviewIndex Item component).
 
 [Details][phase-two]
 
 ### Phase 3: SearchResult, Tags, Price Filter (2 days)
 
-Phase 3 is focused on allowing users to search based on tags or specific place names. (Tags belong to a Place.) Users can also add new tags to each place. The search results are rendered in a component called SearchResultIndex, which contain SearchItem. The search page also contains a google map that indicates the location of all the search results.
+Phase 3 is focused on allowing users to search based on tags or specific place names. (Tags belong to a Place.) Users can also add new tags to each place. The search results are rendered in a component called SearchResultIndex, which contain SearchIndexItem. The search page also contains a google map that indicates the location of all the search results.
 
 [Details][phase-three]
 
@@ -67,7 +67,7 @@ Phase 5 introduces two new features. First, users can upload photos via their co
 
 ### Phase 6: Explore places through pictures (1 day)
 
-Connect with Instagram API. Filter the photos so that the ones related to restaurants/places to visit show up when the user clicks the "explore" button. Page has a google map that shows locations of the images.
+Connect with Instagram API. Filter the photos so that the ones related to places and user's current location show up when the user clicks the "explore" button. Page has a google map that shows locations of the images.
 
 ### Bonus Features (TBD)
 - [ ] Allow business owners to create a new page.
