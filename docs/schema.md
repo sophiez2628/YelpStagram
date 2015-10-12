@@ -9,6 +9,28 @@ body        | text      | not null
 author_id   | integer   | not null, foreign key (references users), indexed
 place_id | integer   | not null, foreign key (references places), indexed
 
+## useful
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+review_id   | integer   | not null
+user_id     | integer   | not null
+
+## funny
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+review_id   | integer   | not null
+user_id     | integer   | not null
+
+## cool
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+review_id   | integer   | not null
+user_id     | integer   | not null
+
+
 ## places
 column name | data type | details
 ------------|-----------|-----------------------
@@ -18,6 +40,7 @@ address     | string    | not null
 web_url     | string    | not null
 lat         | float     | not null
 lng         | float     | not null
+price       | integer   | not null
 
 ##photos
 column name | data type | details
@@ -46,6 +69,8 @@ tag_id      | integer   | not null, foreign key (references tags), indexed
 column name     | data type | details
 ----------------|-----------|-----------------------
 id              | integer   | not null, primary key
-username        | string    | not null, indexed, unique
 password_digest | string    | not null
 session_token   | string    | not null, indexed, unique
+email           | string    | not null, indexed, unique
+first_name      | string    | not null
+last_name       | string    | null null

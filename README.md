@@ -14,11 +14,11 @@ and React.js. YelpStagram allows users to:
 - [ ] Create an account
 - [ ] Log in / Log out
 - [ ] User can create, read, edit, and delete reviews
-- [ ] User can upload pictures, share, and bookmark a restaurant
+- [ ] User can upload pictures, share, and bookmark places
 - [ ] User can mark reviews as useful, funny, or cool
-- [ ] User can search for restaurants and see the location on Google Maps on the search result page
+- [ ] User can search for places and see the location on Google Maps on the search result page
 - [ ] User can filter restaurants through price
-- [ ] User can also search for restaurants using pictures 
+- [ ] User can also search for places using keywords  
 
 ## Design Docs
 * [View Wireframes][view]
@@ -29,67 +29,50 @@ and React.js. YelpStagram allows users to:
 
 ## Implementation Timeline
 
-### Phase 1: User Authentication, Note Model and JSON API (1.5 days)
+### Phase 1: User Authentication, Review Model and JSON API (1.5 days)
 
 In Phase 1, I will begin by implementing user signup and authentication (using
 BCrypt). There will be a basic landing page after signup that will contain the
-container for the application's root React component. Before building out the
-front end, I will begin by setting up a full JSON API for Notes.
+container for the application's root React component. I will also begin setting up a full JSON API for Reviews.
 
 [Details][phase-one]
 
-### Phase 2: Flux Architecture and Note CRUD (2.5 days)
+### Phase 2: Flux Architecture and Review CRUD (2.5 days)
 
 Phase 2 is focused on setting up Flux, the React Router, and the React view
 structure for the main application. After the basic Flux architecture has been
-set up, a Note store will be implemented and a set of actions corresponding to
+set up, a Review store will be implemented and a set of actions corresponding to
 the needed CRUD functionality created. Once this is done, I will create React
-views for the Notes `Index`, `IndexItem` and `Form`. At the end of Phase 2,
-Notes can be created, read, edited and destroyed in the browser. Notes should
-save to the database when the form loses focus or is left idle after editing.
-Lastly, while constructing the views I will start using basic bootstrap for
-styling.
+views for the Review `Index`, `IndexItem` and `Form`. At the end of Phase 2,
+Reviews can be created, read, edited and destroyed in the browser. Basic styling will be applied. Each place has a page that contains place's information, photos, location on a google map, and reviews.
 
 [Details][phase-two]
 
-### Phase 3: Notebooks and Tags (2 days)
+### Phase 3: SearchResult, Tags, Price Filter (2 days)
 
-Phase 3 adds organization to the Notes. Notes belong to a Notebook, which has
-its own `Index` view. Create JSON API for Notebooks. Notes can also now be
-tagged with multiple tags. Users can bring up notes in a separate `SearchIndex`
-view by searching for their tags. Once the tag search is implemented, I will
-extend this to a fuzzy search through every Note's content.
+Phase 3 is focused on allowing users to search based on tags or specific place names. (Tags belong to a Place.) Users can also add new tags to each place. The search results are rendered in a component called SearchResultIndex, which contain SearchItem. The search page also contains a google map that indicates the location of all the search results.
 
 [Details][phase-three]
 
-### Phase 4: Allow Complex Styling in Notes (1 day)
+### Phase 4: Add Styling to the Search Page and Individual Page (1 day)
 
-Using quill.js, allow for complex styling of notes.
 
 [Details][phase-four]
 
-### Phase 5: Reminders and Garbage Collection (1 day)
+### Phase 5: Add Photo and Browse Photo of a Place (1 day)
 
-Phase 5 introduces two new features. First, users can set reminders on notes
-which will at the time they are set for prompt the user to review and edit the
-given note. In addition, I will implement a feature that asks users to review
-notes once they reach a certain age and ask whether they should be kept,
-archived, or deleted.
+Phase 5 introduces two new features. First, users can upload photos via their computers. Users can also browse through pictures in a carousel like manner.
 
 [Details][phase-five]
 
-### Phase 6: Styling Cleanup and Seeding (1 day)
+### Phase 6: Explore places through pictures (1 day)
 
-Bootstrap will have been used to keep things organized up until now, but in
-Phase 6 I will add styling flourishes and make modals out of some elements (like
-the NotebookForm).
+Connect with Instagram API. Filter the photos so that the ones related to restaurants/places to visit show up when the user clicks the "explore" button. Page has a google map that shows locations of the images.
 
 ### Bonus Features (TBD)
-- [ ] Prettify transitions
-- [ ] Use javascript library for cleaner tag selection
-- [ ] Changelogs for Notes
-- [ ] Pagination / infinite scroll for Notes Index
-- [ ] Multiple sessions
+- [ ] Allow business owners to create a new page.
+- [ ] Allow user to sign into app using their Facebook Account.
+- [ ] Allow user to link their YelpStagram account with Instagram account to allow them to easily upload pictures.
 
 [phase-one]: ./docs/phases/phase1.md
 [phase-two]: ./docs/phases/phase2.md

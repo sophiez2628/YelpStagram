@@ -2,12 +2,12 @@
 
 ## Rails
 ### Models
-* Notebook
 * Tag
 * Tagging
+* Place
 
 ### Controllers
-* Api::NotebooksController (create, destroy, index, show, update)
+* Api::TagController (create, destroy, index, show, update)
 
 ### Views
 * notebooks/index.json.jbuilder
