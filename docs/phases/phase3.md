@@ -17,14 +17,14 @@
 ## Flux
 ### Views (React Components)
 * SearchResultIndex
-  - SearchIndexItem
-* Map
+  - SearchResultItem
+* GoogleMap
 
 ### Stores
 * SearchResults
 
 ### Actions
-* ApiActions.receiveAllSearchResults 
+* ApiActions.receiveAllSearchResults
 
 ### ApiUtil
 * ApiUtil.fetchSearchResults

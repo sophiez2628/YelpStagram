@@ -1,0 +1,13 @@
+App
+  -Search HomePage (IndexRoute)
+  -ReviewIndex
+    -ReviewItem
+  -PhotoIndex
+    -PhotoItem
+  -ReviewForm
+  -PhotoForm
+  -SearchIndex
+    SearchItem
+  -GoogleMap
+  -PlaceInfo
+  -UserInfo

@@ -11,8 +11,6 @@
 
 ## Flux
 ### Views (React Components)
-* InstaPicsIndex
-  - InstaPic
 * Map
 
 ### Stores

@@ -10,11 +10,12 @@
 ## Flux
 ### Views (React Components)
 * ReviewIndex
-  - ReviewIndexItem
+  - ReviewItem
 * ReviewForm
-* IndividualInfo
-* Photos
-* Map Component 
+* UserInfo
+* PhotoIndex
+  -PhotoItem
+* GoogleMap
 
 ### Stores
 * Review

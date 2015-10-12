@@ -59,9 +59,9 @@ Phase 3 is focused on allowing users to search based on tags or specific place n
 
 [Details][phase-four]
 
-### Phase 5: Add Photo and Browse Photo of a Place (1 day)
+### Phase 5: Add Photo (1 day)
 
-Phase 5 introduces two new features. First, users can upload photos via their computers. Users can also browse through pictures in a carousel like manner.
+Users can upload photos via their computers.
 
 [Details][phase-five]
 
