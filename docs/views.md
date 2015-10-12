@@ -1,26 +1,38 @@
 # View Wireframes
 
 ## New User
-![new-user]
+![new_user]
 
 ## New Session
-![new-session]
+![new_session]
 
-## NotesIndex / NoteIndexItem / NoteForm
-![notes]
+## Home Page
+![home_page]
 
-## NotebooksIndex / NotebookIndexItem
-![notebooks]
+## SearchIndex/Search Item
+![search_results]
 
-## NoteBookForm
-![notebook-form]
+## PlaceInfo/PhotoIndex/PhotoItem/ReviewIndex/ReviewItem
+![place_page]
+
+## AddReview
+![add_review]
+
+## AddPhoto
+![add_photo]
+
+## BrowsePhotos
+![browse_photos]
 
 ## Component Heirarchy
 ![component-heirarchy]
 
-[new-user]: ./wireframes/new_user.png
-[new-session]: ./wireframes/new_session.png
-[notes]: ./wireframes/root_notes.png
-[notebooks]: ./wireframes/root_notebooks.png
-[notebook-form]: ./wireframes/notebook_form.png
-[component-heirarchy]: ./wireframes/component_heirarchy.png
+[new_user]: ./wireframes/new_user.png
+[new_session]: ./wireframes/new_session.png
+[home_page]: ./wireframes/home_page.png
+[search_results]: ./wireframes/search_results.png
+[place_page]: ./wireframes/search_results.png
+[add_photo]: ./wireframes/add_photo.png
+[add_review]: ./wireframes/add_review.png
+[browse_photos]: ./wireframes/browse_photos.png
+[component-heirarchy]: ./wireframes/component_heirarchy.txt

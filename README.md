@@ -69,6 +69,8 @@ Users can upload photos via their computers.
 
 Connect with Instagram API. Filter the photos so that the ones related to places and user's current location show up when the user clicks the "explore" button. Page has a google map that shows locations of the images.
 
+[Details][phase-six]
+
 ### Bonus Features (TBD)
 - [ ] Allow business owners to create a new page.
 - [ ] Allow user to sign into app using their Facebook Account.
@@ -79,3 +81,4 @@ Connect with Instagram API. Filter the photos so that the ones related to places
 [phase-three]: ./docs/phases/phase3.md
 [phase-four]: ./docs/phases/phase4.md
 [phase-five]: ./docs/phases/phase5.md
+[phase-six]: ./docs/phases/phase6.md
