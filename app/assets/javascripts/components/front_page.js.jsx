@@ -5,7 +5,7 @@ var FrontPage = React.createClass({
     //empty string if no user input
     var find = e.currentTarget.find.value;
     var near = e.currentTarget.near.value;
-    SearchParamsActions.updateSearchParams(find, near);
+    ApiUtil.fetchSearchResults({find: find, near: near});
     this.props.history.pushState(null,'searchresults');
     //send this information to search param store
     //(a store has dispatcher registered that listens for actions)

@@ -11,7 +11,7 @@
     searchParams.find = find;
     searchParams.near = near;
     SearchParamsStore.onChange();
-    //search results react class listens to this change 
+    //search results react class listens to this change
 
   };
 

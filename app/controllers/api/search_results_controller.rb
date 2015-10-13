@@ -1,6 +1,5 @@
 class Api::SearchResultsController < ApplicationController
   def index
-    debugger;
-
+    search_results = Place.search_names(params[:find]);
   end
 end
