@@ -8,7 +8,7 @@ $(document).ready(function() {
      render: function(){
        return (
            <div>
-             <header><h1>YelpStagram</h1></header>
+             <header className="logo"><h1>YelpStagram</h1></header>
              {this.props.children}
            </div>
        );
