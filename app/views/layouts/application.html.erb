@@ -5,16 +5,15 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <% if current_user %>
+    <script>
+      window.CURRENT_USER_ID = <%= current_user %>
+    </script>
+  <% end %>
 </head>
 <body>
 
-<% if signed_in? %>
-  <%= current_user.first_name %>
-  <%= button_to "sign out", session_url, :method => :delete, class: "sign" %>
-<% else %>
-  <%= button_to "sign in", new_session_url, class: "sign" %>
-  <%= button_to "sign up", new_user_url, class: "sign" %>
-<% end %>
+
 
 <br>
 
