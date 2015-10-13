@@ -1,6 +1,23 @@
 var Navbar = React.createClass({
+navContent: function () {
+  if (window.CURRENT_USER_ID) {
+    return (
+      <ul className="nav navbar-nav pull-right">
+        <li onClick={this.signOut}><a href="#">sign out</a></li>
+      </ul>
+    );
+  } else {
+    return (
+      <ul className="nav navbar-nav pull-right">
+        <li><a href="#">sign in</a></li>
+        <li><a href="#">sign up</a></li>
+      </ul>
+    );
+  }
+},
 
 render: function() {
+  var list = this.navContent();
   return (
     <div>
       <nav className="navbar navbar-default">
@@ -21,9 +38,7 @@ render: function() {
          </div>
 
             <div className="collapse navbar-collapse" id="collapse-menu">
-              <ul className="nav navbar-nav pull-right">
-                
-              </ul>
+              { list }
             </div>
 
         </div>
