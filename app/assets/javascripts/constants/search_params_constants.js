@@ -1,0 +1,3 @@
+SearchParamsConstants = {
+  UPDATE_SEARCH_PARAMS: "UPDATE_SEARCH_PARAMS"
+};

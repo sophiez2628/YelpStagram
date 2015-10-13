@@ -1,3 +1,0 @@
-var SearchResults = React.createClass({
-
-});
