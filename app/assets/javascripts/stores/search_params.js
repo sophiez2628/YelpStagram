@@ -2,20 +2,22 @@
   'use strict';
   var CHANGE_EVENT = "change";
 
-  var filterParams = {
+  var searchParams = {
     find: null,
     near: null
   };
 
   var resetSearchParams = function(find, near) {
-    filterParams.find = find;
-    filterParams.near = near;
+    searchParams.find = find;
+    searchParams.near = near;
     SearchParamsStore.onChange();
+    //search results react class listens to this change 
+
   };
 
   root.SearchParamsStore = $.extend({}, EventEmitter.prototype, {
-    filterParams: function() {
-      return filterParams;
+    searchParams: function() {
+      return searchParams;
     },
 
     addChangeListener: function(callback){
