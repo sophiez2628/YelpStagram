@@ -1,0 +1,3 @@
+var SearchResults = React.createClass({
+
+});
