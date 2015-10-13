@@ -1,29 +1,25 @@
 var SearchResults = React.createClass({
   getInitialState: function() {
-  return { SearchResults: {} };
+  return { searchResults: SearchResultsStore.all() };
 },
 
   componentDidMount: function() {
     window.SearchResultsStore.addChangeListener(this.onSearchResultsChange);
   },
 
-  onParamsChange: function() {
-  //what should happen when filter params are applied?
-  //benches should be re-rendered to reflect the filter
-  debugger;
-  var params = window.SearchParamsStore.searchParams();
-  ApiUtil.fetchSearchResults(params);
-  },
-
   onSearchResultsChange: function() {
-    this.setState({ SearchResults: SearchResultsStore.all() });
+    this.setState({ searchResults: SearchResultsStore.all() });
   },
 
   render: function() {
     return (
-      <div>
-        hi
-      </div>
+      <ul>
+        {
+          this.state.searchResults.map(function(searchResult) {
+            return (<SearchResultItem searchResult={searchResult} />);
+          })
+        }
+        </ul>
     );
   }
 
