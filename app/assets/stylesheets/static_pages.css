@@ -1,4 +1,4 @@
-html, body, header, nav, h1, a,
+/*html, body, header, nav, h1, a,
 ul, li, strong, main, button, i,
 section, img, div, h2, p, form,
 fieldset, label, input, textarea,
@@ -44,7 +44,7 @@ button {
 button,
 input[type="submit"] {
   cursor: pointer;
-}
+}*/
 
 /* Clearfix */
 
@@ -54,14 +54,6 @@ input[type="submit"] {
   clear: both;
 }
 
-
-
-form.button_to {
-  border: 1px solid #666;
-  color:#000;
-  text-decoration:none;
-  font-size: 14;
-  width: 55px;
-  margin: 0;
-  position: absolute;
+html {
+  background-image: url('bg.jpg');
 }

@@ -16,7 +16,7 @@ var FrontPage = React.createClass({
 
   render: function() {
     return (
-      <div>
+      <div className="col-lg-6 col-lg-offset-3 text-center">
           <span>discover the best places in your area</span>
         <form onSubmit={this.handleSubmit}>
           Find: <input type="text" name="find"></input>
