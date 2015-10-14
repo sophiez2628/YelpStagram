@@ -17,8 +17,8 @@ $(document).ready(function() {
    var routes = (
        <Route path="/" component={App}>
          <IndexRoute component={FrontPage}/>
-         <Route path="/searchresults" component={{search: SearchResults, map: Map}} />
-         <Route path="/map" component={Map} />
+         <Route path="/searchResults" component={{search: SearchResults, map: Map}} />
+         <Route path="/searchResults/:placeId" component={PlacePage} />
        </Route>
    );
 

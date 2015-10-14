@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+gem 'newrelic_rpm'
 gem 'bcrypt'
 gem 'annotate'
 gem 'bootstrap-sass', '~> 3.3.5'
