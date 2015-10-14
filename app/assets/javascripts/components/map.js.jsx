@@ -5,7 +5,19 @@ var Map = React.createClass({
       center: {lat: 37.7758, lng: -122.435},
       zoom: 13
     };
-    this.mymap = new google.maps.Map(map, mapOptions);
+    this.map = new google.maps.Map(map, mapOptions);
+    SearchResultsStore.addChangeListener(this.onChange);
+  },
+
+  onChange: function() {
+    var searchResults = SearchResultsStore.all();
+    searchResults.forEach(function(result) {
+      var marker = new google.maps.Marker({
+        position: {lat: result.lat, lng: result.lng },
+        title: result.name
+      });
+      marker.setMap(this.map);
+    }.bind(this));
   },
 
   render: function() {
