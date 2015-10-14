@@ -3,7 +3,12 @@ class Api::ReviewsController < ApplicationController
     review = Review.new(review_params)
     if review.save
       render json: review
-    end 
+    end
+  end
+
+  def index
+    reviews = Review.fetch(params[:place_id].to_i)
+    render json: reviews
   end
 
   private

@@ -1,3 +1,7 @@
 SearchResultsConstants = {
   SEARCH_RESULTS_RECEIVED: "SEARCH_RESULTS_RECEIVED"
 };
+
+ReviewsConstants = {
+  REVIEWS_RECEIVED: "REVIEWS_RECEIVED"
+};

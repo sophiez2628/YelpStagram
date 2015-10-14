@@ -26,4 +26,17 @@ ApiUtil = {
     });
   },
 
+  fetchReviews: function(place_id){
+    //make an api call using AJAX in here
+    $.ajax({
+      url: '/api/reviews',
+      type: 'GET',
+      data: place_id,
+      dataType: 'json',
+      success: function(reviews) {
+        ApiActions.receiveReviews(reviews);
+      }
+    });
+  },
+
 };

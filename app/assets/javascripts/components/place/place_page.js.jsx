@@ -20,7 +20,8 @@ var PlacePage = React.createClass({
       <div>
         <h1>{this.state.place.name}</h1>
         <button onClick={this.handleWriteReview}>Write a Review</button>
-        <ReviewIndex place={this.props.params.placeId}/>
+        <h3>Reviews</h3>
+        <ReviewIndex placeId={this.props.params.placeId} />
       </div>
     );
   }
