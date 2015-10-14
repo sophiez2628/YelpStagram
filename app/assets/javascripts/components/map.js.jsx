@@ -11,9 +11,10 @@ var Map = React.createClass({
 
   onChange: function() {
     var searchResults = SearchResultsStore.all();
-    searchResults.forEach(function(result) {
+    searchResults.forEach(function(result, index) {
       var marker = new google.maps.Marker({
         position: {lat: result.lat, lng: result.lng },
+        label: (index + 1) + "",
         title: result.name
       });
       marker.setMap(this.map);
