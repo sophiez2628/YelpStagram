@@ -1,6 +1,6 @@
 var SearchResultItem = React.createClass({
   mixins: [ReactRouter.History],
-  
+
   showPlacePlage: function() {
     var placeURL = "/searchResults/" + this.props.searchResult.id;
     this.history.pushState(null, placeURL);

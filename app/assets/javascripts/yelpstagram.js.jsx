@@ -19,6 +19,7 @@ $(document).ready(function() {
          <IndexRoute component={FrontPage}/>
          <Route path="/searchResults" component={{search: SearchResults, map: Map}} />
          <Route path="/searchResults/:placeId" component={PlacePage} />
+         <Route path="/writeReview/:placeId" component={WriteReview} />
        </Route>
    );
 

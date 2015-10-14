@@ -24,6 +24,17 @@
     onChange: function() {
       this.emit(CHANGE_EVENT);
     },
+
+    find: function(id) {
+      //one return per function
+      var target;
+      _searchResults.forEach(function(result) {
+        if (result.id === id) {
+          target = result;
+        }
+      });
+      return target;
+    },
     //this ensures that the store is listening to the dispatcher
     dispatcherID: AppDispatcher.register(function(action){
       if(action.actionType === SearchResultsConstants.SEARCH_RESULTS_RECEIVED){
