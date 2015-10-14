@@ -15,8 +15,8 @@ var SearchResults = React.createClass({
     return (
       <ul>
         {
-          this.state.searchResults.map(function(searchResult) {
-            return (<SearchResultItem searchResult={searchResult} />);
+          this.state.searchResults.map(function(searchResult, index) {
+            return (<SearchResultItem key={searchResult.id} index={index} searchResult={searchResult} />);
           })
         }
         </ul>
