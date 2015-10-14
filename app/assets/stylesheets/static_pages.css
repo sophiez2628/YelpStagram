@@ -54,10 +54,54 @@ input[type="submit"] {
   clear: both;
 }
 
-html {
-  background-image: url('bg.jpg');
+#bg-images {
+  position:relative;
+  margin:0;
+}
+#bg-images img {
+  position:absolute;
+  width: 100%;
+  left:0;
+  -webkit-transition: opacity 1s ease-in-out !important;
+  -moz-transition: opacity 1s ease-in-out !important;
+  -o-transition: opacity 1s ease-in-out !important;
+  transition: opacity 1s ease-in-out !important;
 }
 
+@keyframes bgFadeInOut {
+  0% {
+    opacity:1;
+  }
+  45% {
+    opacity:1;
+  }
+  55% {
+    opacity:0;
+  }
+  100% {
+    opacity:0;
+  }
+}
+
+#bg-images img.top {
+  animation-name: bgFadeInOut;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-duration: 10s;
+  animation-direction: alternate;
+}
+
+
+
+.front-page {
+  top: 300px;
+  font-size: 40px;
+  color: white;
+}
+
+#search-form{
+  font-size: 20px;
+}
 
 .map {
   width: 300px;

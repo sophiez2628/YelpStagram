@@ -13,7 +13,13 @@ var WriteReview = React.createClass({
   },
 
   handleSubmitReview: function(e) {
-
+    e.preventDefault();
+    var rating = parseInt(e.currentTarget.rating.value);
+    var body = e.currentTarget.review.value;
+    ApiUtil.createReview({rating: rating,
+                          body: body,
+                          author_id: window.CURRENT_USER_ID,
+                          place_id: this.props.params.placeId});
   },
 
   render: function() {
@@ -24,8 +30,8 @@ var WriteReview = React.createClass({
           this.state.place.name
         }
         <form onSubmit={this.handleSubmitReview}>
-          <input ref="ratingBox" className="rating"></input>
-          <textarea type="text"></textarea>
+          <input ref="ratingBox" name="rating" className="rating"></input>
+          <textarea type="text" name="review"></textarea>
           <input type="submit" value="Post Review"></input>
         </form>
       </div>

@@ -8,4 +8,7 @@ Rails.application.routes.draw do
     resources :search_results, only: [:index]
   end
 
+  namespace :api do
+    resources :reviews, only: [:create, :edit, :destroy]
+  end
 end
