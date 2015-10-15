@@ -18,16 +18,16 @@ var FrontPage = React.createClass({
     return (
       <div>
         <div id="bg-images">
-          <img class="bottom" src="/assets/food.jpg" />
-          <img class="top" src="/assets/amsterdam.jpg" />
+          <img className="bottom" src="/assets/food.jpg" />
+          <img className="top" src="/assets/amsterdam.jpg" />
         </div>
 
         <div className="col-lg-6 col-lg-offset-3 text-center front-page">
             <span>discover the best places in your area</span>
           <form id="search-form" onSubmit={this.handleSubmit}>
-            find: <input type="text" name="find"></input>
-            near: <input type="text" name="near"></input>
-            <input type="submit" value="Search"></input>
+            <input id="one" type="text" name="find"></input>
+            <input id="two" type="text" name="near"></input>
+            <input id="three" type="submit" value="Search"></input>
           </form>
         </div>
       </div>

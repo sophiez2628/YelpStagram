@@ -30,9 +30,12 @@ var PlacePage = React.createClass({
   render: function() {
     return (
       <div>
-        <h1>{this.state.place.name}</h1>
-        <button onClick={this.handleWriteReview}>Write a Review</button>
-        <button onClick={this.handleUploadPhoto}>Add a Photo</button>
+        <main className="place-header">
+          <h1>{this.state.place.name}</h1>
+          <button onClick={this.handleWriteReview}>Write a Review</button>
+          <button onClick={this.handleUploadPhoto}>Add a Photo</button>
+        </main>
+        <PlaceLoc place={this.state.place} />
         <PhotoIndex placeId={this.props.params.placeId}/>
         <h3>reviews</h3>
         <ReviewIndex placeId={this.props.params.placeId} />
