@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+gem 'cloudinary'
 gem 'newrelic_rpm'
 gem 'bcrypt'
 gem 'annotate'

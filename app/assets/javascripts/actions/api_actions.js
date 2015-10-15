@@ -11,5 +11,12 @@ ApiActions = {
       actionType: ReviewsConstants.REVIEWS_RECEIVED,
       reviews: reviews
     });
+  },
+
+  receivePhotos: function(photos){
+    AppDispatcher.dispatch({
+      actionType: PhotosConstants.PHOTOS_RECEIVED,
+      photos: photos 
+    });
   }
 };

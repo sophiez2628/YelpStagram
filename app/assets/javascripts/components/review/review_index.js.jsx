@@ -10,6 +10,7 @@ var ReviewIndex = React.createClass({
 
   onChange: function() {
     this.setState({ reviews: ReviewsStore.all() });
+    //use map to return rather than forEach!
   },
 
   render: function() {

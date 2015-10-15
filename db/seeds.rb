@@ -1,10 +1,16 @@
-# This file should contain all the record creation needed to seed the database with its default values.
+qq# This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
 # Examples:
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+marlowe_photo_one = Photo.create({
+  place_id: 1,
+  user_id: 1,
+  url: "http://res.cloudinary.com/dqrqkkhtr/image/upload/v1444865982/rupj3x1a85z5pefnodut.png"
+  })
 
 marlowe = Place.create({
   name: "Marlowe",

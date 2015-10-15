@@ -5,3 +5,7 @@ SearchResultsConstants = {
 ReviewsConstants = {
   REVIEWS_RECEIVED: "REVIEWS_RECEIVED"
 };
+
+PhotosConstants = {
+  PHOTOS_RECEIVED: "PHOTOS_RECEIVED"
+};

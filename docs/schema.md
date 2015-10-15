@@ -46,10 +46,9 @@ price       | integer   | not null
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-description | string    | not null
 place_id    | integer   | not null
-author_id   | float     | not null
-
+user_id     | integer   | not null
+url         | string    | not null
 
 ## tags
 column name | data type | details

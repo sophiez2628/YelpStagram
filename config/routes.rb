@@ -6,9 +6,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :search_results, only: [:index]
-  end
-
-  namespace :api do
     resources :reviews, only: [:create, :edit, :destroy, :index]
+    resources :photos, only: [:index, :create]
   end
+  
 end
