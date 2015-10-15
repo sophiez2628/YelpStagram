@@ -23,7 +23,6 @@
       this.emit(CHANGE_EVENT);
     },
 
-
     dispatcherID: AppDispatcher.register(function(action){
       if(action.actionType === PhotosConstants.PHOTOS_RECEIVED){
         resetPhotos(action.photos);

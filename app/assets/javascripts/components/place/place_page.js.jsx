@@ -18,11 +18,7 @@ var PlacePage = React.createClass({
   handleUploadPhoto: function(e) {
     cloudinary.openUploadWidget({ cloud_name: 'dqrqkkhtr', upload_preset: 'pcdi2psu'},
       function(error, result) {
-        result.forEach(function(image) {
-          ApiUtil.saveImage({url: image.url,
-                            user_id: window.CURRENT_USER_ID,
-                            place_id: this.props.params.placeId});
-        });
+        console.log(result);
        });
   },
 
