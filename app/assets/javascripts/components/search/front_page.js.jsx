@@ -25,9 +25,9 @@ var FrontPage = React.createClass({
         <div className="col-lg-6 col-lg-offset-3 text-center front-page">
             <span>discover the best places in your area</span>
           <form id="search-form" onSubmit={this.handleSubmit}>
-            <input id="one" type="text" name="find"></input>
-            <input id="two" type="text" name="near"></input>
-            <input id="three" type="submit" value="Search"></input>
+            <input id="one" type="text" name="find" placeholder="find"></input>
+            <input id="two" type="text" name="near" placeholder="near"></input>
+            <input id="three" type="submit" value="search"></input>
           </form>
         </div>
       </div>

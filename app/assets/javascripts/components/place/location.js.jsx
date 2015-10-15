@@ -9,7 +9,7 @@ var PlaceLoc = React.createClass({
 
   render: function() {
     return (
-      <div>
+      <div className="place-location">
         <Map place={this.state.place} />
         <div>
           {this.state.place.address}

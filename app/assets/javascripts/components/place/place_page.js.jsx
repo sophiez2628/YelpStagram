@@ -29,14 +29,16 @@ var PlacePage = React.createClass({
 
   render: function() {
     return (
-      <div>
-        <main className="place-header">
+      <div className="place-page">
+        <main className="place-header clearfix">
           <h1>{this.state.place.name}</h1>
           <button onClick={this.handleWriteReview}>Write a Review</button>
           <button onClick={this.handleUploadPhoto}>Add a Photo</button>
         </main>
-        <PlaceLoc place={this.state.place} />
-        <PhotoIndex placeId={this.props.params.placeId}/>
+        <div className="map-photos clearfix">
+          <PlaceLoc place={this.state.place} />
+          <PhotoIndex placeId={this.props.params.placeId}/>
+        </div>
         <h3>reviews</h3>
         <ReviewIndex placeId={this.props.params.placeId} />
       </div>

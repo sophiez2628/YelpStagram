@@ -1,0 +1,26 @@
+.place-page {
+  width: 1000px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin: 0 auto;
+  border-left: 1px solid #eee;
+  border-right: 1px solid #eee;
+}
+
+.place-header {
+  position: relative;
+}
+
+.place-location {
+  width: 300px;
+  float: left;
+}
+
+.place-header h1{
+  float: left;
+}
+
+.place-header button{
+  float: right;
+  margin-top: 30px;
+}

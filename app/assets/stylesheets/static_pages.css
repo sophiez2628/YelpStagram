@@ -104,11 +104,19 @@ input[type="submit"] {
   background-color: rgba(255,255,255,0.5);
 }
 
+.front-page span {
+  font-family: cursive;
+}
+
 #search-form{
-  border: 1px solid gray;
+  font-size: 20px;
+}
+
+#search-form #three {
+  color: gray;
 }
 
 .map {
-  width: 300px;
-  height: 300px;
+  width: 200px;
+  height: 200px;
 }
