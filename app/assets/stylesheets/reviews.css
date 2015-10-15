@@ -1,0 +1,10 @@
+.reviews {
+  min-height: 300px;
+  width: 500px;
+  margin: 0 auto;
+}
+
+.reviews li{
+  border: 1px solid black;
+  padding: 20px;
+}

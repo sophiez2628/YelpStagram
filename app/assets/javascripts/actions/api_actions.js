@@ -16,7 +16,14 @@ ApiActions = {
   receivePhotos: function(photos){
     AppDispatcher.dispatch({
       actionType: PhotosConstants.PHOTOS_RECEIVED,
-      photos: photos 
+      photos: photos
+    });
+  },
+
+  receivePlace: function(place){
+    AppDispatcher.dispatch({
+      actionType: PlaceConstants.PLACE_RECEIVED,
+      place: place
     });
   }
 };

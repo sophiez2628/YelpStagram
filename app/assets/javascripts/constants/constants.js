@@ -9,3 +9,7 @@ ReviewsConstants = {
 PhotosConstants = {
   PHOTOS_RECEIVED: "PHOTOS_RECEIVED"
 };
+
+PlaceConstants = {
+  PLACE_RECEIVED: "PLACE_RECEIVED"
+};

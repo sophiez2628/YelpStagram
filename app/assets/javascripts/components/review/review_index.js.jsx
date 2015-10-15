@@ -16,11 +16,13 @@ var ReviewIndex = React.createClass({
   render: function() {
     return (
       <div>
+        <ul className="reviews">
             {
               this.state.reviews.map(function(review) {
-                return <ReviewIndexItem review={review} />;
+                return <li><ReviewIndexItem review={review} /></li>;
               })
             }
+        </ul>
       </div>
     );
   }

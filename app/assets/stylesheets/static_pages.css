@@ -16,15 +16,17 @@ span, article, footer, time, small {
   background: transparent;
 }
 
-ul {
-  list-style: none;
-}
+
 
 img {
   display: block;
   width: 100%;
   /* expands to full 100% of parent container */
-  height: auto;
+  /*height: auto;
+}*/
+
+ul {
+  list-style: none;
 }
 
 input[type="password"],

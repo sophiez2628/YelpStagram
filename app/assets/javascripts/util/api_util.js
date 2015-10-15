@@ -52,4 +52,16 @@ ApiUtil = {
     });
   },
 
+  fetchPlace: function(place_id) {
+    $.ajax({
+      url: '/api/search_results/' + place_id.place_id,
+      type: 'GET',
+      data: place_id,
+      dataType: 'json',
+      success: function(place) {
+        ApiActions.receivePlace(place);
+      }
+    });
+  }
+
 };

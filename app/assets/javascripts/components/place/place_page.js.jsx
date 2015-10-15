@@ -2,11 +2,16 @@ var PlacePage = React.createClass({
   mixins: [ReactRouter.History],
 
   getInitialState: function() {
-    return { place: this.getStateFromStore() };
+    return { place: {} };
   },
 
-  getStateFromStore: function() {
-    return window.SearchResultsStore.find(parseInt(this.props.params.placeId));
+  componentDidMount: function() {
+    PlaceStore.addChangeListener(this.onChange);
+    ApiUtil.fetchPlace({place_id: this.props.params.placeId});
+  },
+
+  onChange: function() {
+    this.setState({ place: PlaceStore.all() });
   },
 
   handleWriteReview: function(e) {
@@ -28,9 +33,9 @@ var PlacePage = React.createClass({
         <h1>{this.state.place.name}</h1>
         <button onClick={this.handleWriteReview}>Write a Review</button>
         <button onClick={this.handleUploadPhoto}>Add a Photo</button>
-        <h3>Reviews</h3>
-        <ReviewIndex placeId={this.props.params.placeId} />
         <PhotoIndex placeId={this.props.params.placeId}/>
+        <h3>reviews</h3>
+        <ReviewIndex placeId={this.props.params.placeId} />
       </div>
     );
   }
