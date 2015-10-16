@@ -48,14 +48,22 @@ var PlacePage = React.createClass({
     return (
       <div className="place-page">
         <main className="place-header clearfix">
-          <h1>{this.state.place.name}</h1>
-          <div className="rating-info">
-            <input ref="ratingBox" name="rating" className="rating"></input>
-            <span className="num-reviews">{this.state.reviews.length} reviews</span>
+          <div className="place-name">
+            <h1>{this.state.place.name}</h1>
           </div>
-          <button onClick={this.handleWriteReview}>Write a Review</button>
-          <button onClick={this.handleUploadPhoto}>Add a Photo</button>
+
+          <div className="place-buttons">
+            <button onClick={this.handleWriteReview}>Write a Review</button>
+            <button onClick={this.handleUploadPhoto}>Add a Photo</button>
+          </div>
+
         </main>
+
+        <div className="rating-info">
+          <input ref="ratingBox" name="rating" className="rating"></input>
+          <span className="num-reviews">{this.state.reviews.length} reviews</span>
+        </div>
+        
         <div className="map-photos clearfix">
           <PlaceLoc place={this.state.place} />
           <PhotoIndex placeId={this.props.params.placeId}/>
