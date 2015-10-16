@@ -5,6 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+placeholder_image = Photo.create({
+  place_id: 0,
+  user_id: 0,
+  url: "http://res.cloudinary.com/dqrqkkhtr/image/upload/v1445034614/qlibj0px4nvpv1ktnbr3.png"
+  })
 
 marlowe_photo_one = Photo.create({
   place_id: 1,
