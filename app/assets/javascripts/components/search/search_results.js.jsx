@@ -4,6 +4,8 @@ var SearchResults = React.createClass({
 },
 
   componentDidMount: function() {
+    ApiUtil.fetchSearchResults({find: this.props.location.query.find,
+                                near: this.props.location.query.near});
     window.SearchResultsStore.addChangeListener(this.onSearchResultsChange);
   },
 

@@ -5,12 +5,8 @@ var FrontPage = React.createClass({
     //empty string if no user input
     var find = e.currentTarget.find.value;
     var near = e.currentTarget.near.value;
-    ApiUtil.fetchSearchResults({find: find, near: near});
-    this.props.history.pushState(null,'searchResults');
-    //send this information to search param store
-    //(a store has dispatcher registered that listens for actions)
-    //when search param store is updated, search results should be listening
-    //only when search results are ready should i redirect
+    var query = {find: find, near: near};
+    this.props.history.pushState(null,'searchResults', query);
   },
 
 
