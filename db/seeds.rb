@@ -74,6 +74,28 @@ sophie = User.create({
   last_name: "Zhao"
   })
 
+park_tavern = Place.create({
+  name: "Park Tavern",
+  address: "1652 Stockton St San Francisco, CA 94133",
+  web_url: "parktavernsf.com",
+  lat: 37.8010910,
+  lng: -122.4090870,
+  price: 3
+  })
+
+park_tavern_review_one = Review.create({
+  rating: 5,
+  author_id: 1,
+  place_id: 2,
+  body: "I like the style of this restaurant.  It's big, spacious, and the decor
+  is very classy but also has a casual vibe.  The open-airness of the restaurant
+  is nice too when the weather is warm out.  The bar is very inviting as well.
+  I highly recommend Park Tavern if you want to have a big dinner party, yet
+  it's also a very good place to have a date night.  I have yet to visit Marlowe,
+  but if Park Tavern and The Cavalier are the descendants of it, then I have a lot to look forward to."
+  })
+
+
 street_taco = Place.create({
   name: "Street Taco",
   address: "1607 Haight St San Francisco, CA 94117",
