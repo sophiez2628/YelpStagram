@@ -116,7 +116,12 @@ input[type="submit"] {
   color: gray;
 }
 
-.map {
+.multiple-place {
+  width: 250px;
+  height: 250px;
+}
+
+.one-place {
   width: 200px;
   height: 200px;
 }

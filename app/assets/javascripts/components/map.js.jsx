@@ -42,9 +42,16 @@ var Map = React.createClass({
   },
 
   render: function() {
+    var name;
+    if (this.props.place) {
+      name = "one-place";
+    } else {
+      name = "multiple-place";
+    }
+
     return (
       <div>
-        <div className="map" ref="map"></div>
+        <div className={name} ref="map"></div>
       </div>
     );
   }

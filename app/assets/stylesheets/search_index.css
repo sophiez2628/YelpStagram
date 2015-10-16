@@ -1,0 +1,14 @@
+.multiple-place {
+  float: right;
+  margin-right: 100px;
+
+}
+.search-results div {
+  border-bottom: 1px solid #ccc;
+}
+.search-page {
+  width: 800px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-left: 50px;
+}

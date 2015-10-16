@@ -13,13 +13,15 @@ var SearchResults = React.createClass({
 
   render: function() {
     return (
-      <ul>
-        {
-          this.state.searchResults.map(function(searchResult, index) {
-            return (<SearchResultItem key={searchResult.id} index={index} searchResult={searchResult} />);
-          })
-        }
-        </ul>
+      <div className="search-page">
+        <ul className="search-results">
+          {
+            this.state.searchResults.map(function(searchResult, index) {
+              return (<SearchResultItem key={searchResult.id} index={index} searchResult={searchResult} />);
+            })
+          }
+          </ul>
+      </div>
     );
   }
 
