@@ -20,6 +20,13 @@ ApiActions = {
     });
   },
 
+  receivePhoto: function(photo){
+    AppDispatcher.dispatch({
+      actionType: PhotosConstants.PHOTO_RECEIVED,
+      photo: photo
+    });
+  },
+
   receivePlace: function(place){
     AppDispatcher.dispatch({
       actionType: PlaceConstants.PLACE_RECEIVED,

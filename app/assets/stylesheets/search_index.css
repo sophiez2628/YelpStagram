@@ -1,3 +1,17 @@
+.place-name {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.index-img {
+  border: 3px solid gray;
+  border-radius: 25px;
+  float: left;
+  margin-right: 50px;
+  margin-bottom: 20xp;
+  margin-top: 20px;
+}
+
 .multiple-place {
   float: right;
   margin-right: 100px;

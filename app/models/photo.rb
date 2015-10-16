@@ -15,4 +15,9 @@ class Photo < ActiveRecord::Base
     Photo.where('place_id = ?', place_id)
   end
 
+  def self.find_one(place_id)
+    photo = Photo.where('place_id = ?', place_id).first
+    return photo
+  end
+
 end

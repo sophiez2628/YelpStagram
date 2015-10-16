@@ -95,6 +95,23 @@ park_tavern_review_one = Review.create({
   but if Park Tavern and The Cavalier are the descendants of it, then I have a lot to look forward to."
   })
 
+park_tavern_photo_one = Photo.create({
+  place_id: 2,
+  user_id: 1,
+  url: "http://res.cloudinary.com/dqrqkkhtr/image/upload/v1445018850/vnbmsabtpkxwrxgr4xg9.png"
+  })
+
+park_tavern_photo_two = Photo.create({
+  place_id: 2,
+  user_id: 1,
+  url: "http://res.cloudinary.com/dqrqkkhtr/image/upload/v1445018860/wwoxuveysvqxrvqmaeje.png"
+  })
+
+park_tavern_photo_three = Photo.create({
+  place_id: 2,
+  user_id: 1,
+  url: "http://res.cloudinary.com/dqrqkkhtr/image/upload/v1445018866/zggbznahuwa1enliw5fw.png"
+  })
 
 street_taco = Place.create({
   name: "Street Taco",

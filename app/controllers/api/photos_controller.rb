@@ -7,4 +7,6 @@ class Api::PhotosController < ApplicationController
     render json: photos
   end
 
+
+
 end

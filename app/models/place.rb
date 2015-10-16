@@ -19,6 +19,7 @@ class Place < ActiveRecord::Base
     foreign_key: :place_id,
     class_name: "Review"
 
+  has_many :photos
 
   def self.search(find_params)
     find_params = "%#{find_params.downcase}%"

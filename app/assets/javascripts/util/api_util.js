@@ -2,7 +2,7 @@ ApiUtil = {
   fetchSearchResults: function(params){
     //make an api call using AJAX in here
     $.ajax({
-      url: '/api/search_results',
+      url: '/api/places',
       type: 'GET',
       data: params,
       dataType: 'json',
@@ -48,6 +48,24 @@ ApiUtil = {
       dataType: 'json',
       success: function(photos) {
         ApiActions.receivePhotos(photos);
+      }
+    });
+  },
+
+  fetchPhoto: function(place){
+    //make an api call using AJAX in here
+    //what is place?
+    //place is the object that is passed in
+    //in this case, place is {place_id: 1}
+
+    //params will have "place_id" => "1"
+    $.ajax({
+      url: '/api/places/photo',
+      type: 'GET',
+      data: place,
+      dataType: 'json',
+      success: function(photo) {
+        ApiActions.receivePhoto(photo);
       }
     });
   },
