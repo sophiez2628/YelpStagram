@@ -2,16 +2,33 @@ var PlacePage = React.createClass({
   mixins: [ReactRouter.History],
 
   getInitialState: function() {
-    return { place: {} };
+    return { place: {}, reviews: [] };
   },
 
   componentDidMount: function() {
-    PlaceStore.addChangeListener(this.onChange);
+    PlaceStore.addChangeListener(this.onPlaceChange);
+    ReviewsStore.addChangeListener(this.onReviewsChange);
+
     ApiUtil.fetchPlace({place_id: this.props.params.placeId});
+    ApiUtil.fetchReviews({place_id: this.props.params.placeId});
   },
 
-  onChange: function() {
+  onPlaceChange: function() {
     this.setState({ place: PlaceStore.all() });
+  },
+
+  onReviewsChange: function() {
+    this.setState({ reviews: ReviewsStore.all() });
+    //compute average
+    var sum = 0.0;
+    this.state.reviews.forEach(function(review) {
+      sum += parseFloat(review.rating);
+    });
+    var ave = parseFloat(sum)/this.state.reviews.length;
+
+    var $rate = $(React.findDOMNode(this.refs.ratingBox));
+    $rate.rating({showClear: false, showCaption: false, readonly: true, size: 'xs'});
+    $rate.rating('update', ave);
   },
 
   handleWriteReview: function(e) {
@@ -32,6 +49,10 @@ var PlacePage = React.createClass({
       <div className="place-page">
         <main className="place-header clearfix">
           <h1>{this.state.place.name}</h1>
+          <div className="rating-info">
+            <input ref="ratingBox" name="rating" className="rating"></input>
+            <span className="num-reviews">{this.state.reviews.length} reviews</span>
+          </div>
           <button onClick={this.handleWriteReview}>Write a Review</button>
           <button onClick={this.handleUploadPhoto}>Add a Photo</button>
         </main>
@@ -40,7 +61,7 @@ var PlacePage = React.createClass({
           <PhotoIndex placeId={this.props.params.placeId}/>
         </div>
         <h3>reviews</h3>
-        <ReviewIndex placeId={this.props.params.placeId} />
+        <ReviewIndex reviews={this.state.reviews} />
       </div>
     );
   }

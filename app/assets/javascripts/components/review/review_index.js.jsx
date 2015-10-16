@@ -1,16 +1,10 @@
 var ReviewIndex = React.createClass({
   getInitialState: function() {
-    return { reviews: ReviewsStore.all() };
+    return { reviews: [] };
   },
 
-  componentDidMount: function() {
-    ReviewsStore.addChangeListener(this.onChange);
-    ApiUtil.fetchReviews({place_id: this.props.placeId});
-  },
-
-  onChange: function() {
-    this.setState({ reviews: ReviewsStore.all() });
-    //use map to return rather than forEach!
+  componentWillReceiveProps: function(prop) {
+    this.setState({ reviews: prop.reviews});
   },
 
   render: function() {
@@ -19,7 +13,7 @@ var ReviewIndex = React.createClass({
         <ul className="reviews">
             {
               this.state.reviews.map(function(review) {
-                return <li><ReviewIndexItem review={review} /></li>;
+                return <li><ReviewIndexItem key={review.id} review={review} /></li>;
               })
             }
         </ul>

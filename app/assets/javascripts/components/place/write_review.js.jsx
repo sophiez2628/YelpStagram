@@ -5,7 +5,7 @@ var WriteReview = React.createClass({
 
   componentDidMount: function(){
     var $rate = $(React.findDOMNode(this.refs.ratingBox));
-    $rate.rating({step:1});
+    $rate.rating({step:1, showClear: false, showCaption: false});
   },
 
   getStateFromStore: function() {
