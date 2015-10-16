@@ -20,7 +20,6 @@ var PhotoIndex = React.createClass({
       slidesToShow: 3,
       slidesToScroll: 1
     };
-    console.log(this.state.photos);
     return (
       <div id="place-photos">
         <Slider {...settings}>

@@ -52,29 +52,11 @@ ApiUtil = {
     });
   },
 
-  fetchPhoto: function(place){
-    //make an api call using AJAX in here
-    //what is place?
-    //place is the object that is passed in
-    //in this case, place is {place_id: 1}
-
-    //params will have "place_id" => "1"
+  fetchPlace: function(place) {
     $.ajax({
-      url: '/api/places/photo',
+      url: '/api/places/' + place.place_id,
       type: 'GET',
       data: place,
-      dataType: 'json',
-      success: function(photo) {
-        ApiActions.receivePhoto(photo);
-      }
-    });
-  },
-
-  fetchPlace: function(place_id) {
-    $.ajax({
-      url: '/api/search_results/' + place_id.place_id,
-      type: 'GET',
-      data: place_id,
       dataType: 'json',
       success: function(place) {
         ApiActions.receivePlace(place);

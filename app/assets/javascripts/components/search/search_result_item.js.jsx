@@ -6,20 +6,6 @@ var SearchResultItem = React.createClass({
     var placeURL = "/searchResults/" + this.props.searchResult.id;
     this.history.pushState(null, placeURL);
   },
-  //
-  // componentDidMount: function() {
-  //   PhotosStore.addChangeListener(this.onChange);
-  //   console.log(this.props.searchResult.id);
-  //   ApiUtil.fetchPhoto({place_id: this.props.searchResult.id});
-  // },
-  //
-  // componentWillUnmount: function() {
-  //   PhotosStore.removeChangeListener(this.onChange);
-  // },
-  //
-  // onChange: function() {
-  //   this.setState({ photo: PhotosStore.one() });
-  // },
 
   render: function() {
     return (
