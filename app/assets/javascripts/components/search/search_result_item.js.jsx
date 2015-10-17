@@ -27,15 +27,15 @@ var SearchResultItem = React.createClass({
     this.determineRatingInfo();
     return (
       <div className="one-search-result clearfix">
-        <div className="rating-info">
+
+        <img src={this.props.searchResult.photo} className="index-img"></img>
+        <div className="info">
+          <h3 onClick={this.showPlacePage} className="place-name">
+            {parseInt(this.props.index) + 1}. {this.props.searchResult.name}
+          </h3>
           <input ref="ratingBox" name="rating" className="rating"></input>
           <span className="num-reviews">{this.num_reviews} reviews</span>
         </div>
-
-        <img src={this.props.searchResult.photo} className="index-img"></img>
-        <h3 onClick={this.showPlacePage} className="place-name">
-          {parseInt(this.props.index) + 1}. {this.props.searchResult.name}
-        </h3>
         <p>{this.props.searchResult.address}</p>
       </div>
     );

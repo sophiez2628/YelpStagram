@@ -3,6 +3,8 @@
   font-weight: bold;
 }
 
+
+
 .index-img {
   border: 3px solid gray;
   border-radius: 25px;
@@ -17,9 +19,8 @@
   margin-right: 100px;
 
 }
-.search-results div {
-  border-bottom: 1px solid #ccc;
-}
+
+
 .search-page {
   width: 800px;
   padding-left: 30px;
