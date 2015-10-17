@@ -3,7 +3,9 @@
   font-weight: bold;
 }
 
-
+.multiple-place {
+  float: right;
+}
 
 .index-img {
   border: 3px solid gray;
@@ -26,4 +28,5 @@
   padding-left: 30px;
   padding-right: 30px;
   margin-left: 50px;
+  float: left;
 }
