@@ -10,7 +10,7 @@
   };
 
   var resetGoogleResults = function(results) {
-    _googleResults = results;
+    _googleResults = results.slice(0,8);
     SearchResultsStore.onChange();
   };
 

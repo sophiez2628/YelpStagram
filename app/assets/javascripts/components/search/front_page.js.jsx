@@ -1,5 +1,13 @@
 var FrontPage = React.createClass({
   componentDidMount: function() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+      this.pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      }.bind(this));
+    }
     var input = document.getElementById('two');
     this.autocomplete = new google.maps.places.Autocomplete(input);
   },
@@ -8,11 +16,18 @@ var FrontPage = React.createClass({
     e.preventDefault();
     //empty string if no user input
     var find = e.currentTarget.find.value;
-    var near = e.currentTarget.near.value;
     var place = this.autocomplete.getPlace();
-    var lat = place.geometry.location.lat();
-    var lng = place.geometry.location.lng();
+    var lat;
+    var lng;
+    if (place) {
+      lat = place.geometry.location.lat();
+      lng = place.geometry.location.lng();
+    } else {
+      lat = this.pos.lat;
+      lng = this.pos.lng;
+    }
     var query = {find: find, near: {lat: lat, lng: lng}};
+    //pass the find and near info to search results page as a query
     this.props.history.pushState(null,'searchResults', query);
   },
 

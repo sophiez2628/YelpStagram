@@ -19,6 +19,7 @@ var Map = React.createClass({
       };
       SearchResultsStore.addChangeListener(this.onSearchResultsChange);
       this.map = new google.maps.Map(map, mapOptions);
+      window.map = new google.maps.Map(map, mapOptions);
       var find = this.props.location.query.find;
       var near = {lat: parseFloat(this.props.location.query.near.lat),
                   lng: parseFloat(this.props.location.query.near.lng)};
@@ -29,10 +30,11 @@ var Map = React.createClass({
       };
       var service = new google.maps.places.PlacesService(this.map);
       service.radarSearch(request, function(places) {
-        for (var i = 0; i < places.length; i++ ) {
-          console.log(i);
-          this.addMarker(places[i], i);
-        }
+        // for (var i = 0; i < places.length; i++ ) {
+        //   console.log(i);
+        //   this.addMarker(places[i], i);
+        // }
+
         ApiActions.receiveGooglePlaces(places);
       }.bind(this));
     }
@@ -55,18 +57,19 @@ var Map = React.createClass({
   },
 
   onSearchResultsChange: function() {
-    var searchResults = SearchResultsStore.all();
-    searchResults.forEach(function(result, index) {
-      var marker = new google.maps.Marker({
-        position: {lat: result.lat, lng: result.lng },
-        label: (index + 1) + "",
-        title: result.name
-      });
-      marker.setMap(this.map);
-    }.bind(this));
+    // var searchResults = SearchResultsStore.all();
+    // searchResults.forEach(function(result, index) {
+    //   var marker = new google.maps.Marker({
+    //     position: {lat: result.lat, lng: result.lng },
+    //     label: (index + 1) + "",
+    //     title: result.name
+    //   });
+    //   marker.setMap(this.map);
+    // }.bind(this));
   },
 
   render: function() {
+    console.log("Map");
     var name;
     if (this.props.place) {
       name = "one-place";
@@ -76,7 +79,7 @@ var Map = React.createClass({
 
     return (
       <div className="multiple-place">
-        <div className={name} ref="map"></div>
+        <div className={name} ref="map" id="map"></div>
       </div>
     );
   }

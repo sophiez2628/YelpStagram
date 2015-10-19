@@ -14,6 +14,7 @@ var SearchResults = React.createClass({
   },
 
   render: function() {
+    console.log("Search!");
     return (
       <div className="search-page">
         <ul className="search-results">
