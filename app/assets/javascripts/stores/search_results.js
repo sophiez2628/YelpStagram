@@ -2,16 +2,22 @@
   //when the contents of the BenchStore change, need to inform all
   //interested parties by emitting a CHANGE_EVENT
   var CHANGE_EVENT = "change";
-  var _searchResults = [];
-  var resetSearchResults = function(searchResults){
-    _searchResults = searchResults;
+  var _myDatabaseResults = [];
+  var _googleResults = [];
+  var resetMyDatabaseResults = function(results){
+    _myDatabaseResults = results;
+    SearchResultsStore.onChange();
+  };
+
+  var resetGoogleResults = function(results) {
+    _googleResults = results;
     SearchResultsStore.onChange();
   };
 
   root.SearchResultsStore = $.extend({}, EventEmitter.prototype, {
     all: function(){
       //return a shallow copy so consumer cannot mutate original
-      return _searchResults.slice(0);
+      return _myDatabaseResults.concat(_googleResults);
     },
 
     addChangeListener: function(callback){
@@ -38,7 +44,9 @@
     //this ensures that the store is listening to the dispatcher
     dispatcherID: AppDispatcher.register(function(action){
       if(action.actionType === SearchResultsConstants.SEARCH_RESULTS_RECEIVED){
-        resetSearchResults(action.searchResults);
+        resetMyDatabaseResults(action.searchResults);
+      } else if (action.actionType === SearchResultsConstants.GOOGLE_RESULTS_RECEIVED) {
+        resetGoogleResults(action.searchResults);
       }
     })
   });

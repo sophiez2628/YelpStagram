@@ -1,11 +1,18 @@
 var FrontPage = React.createClass({
+  componentDidMount: function() {
+    var input = document.getElementById('two');
+    this.autocomplete = new google.maps.places.Autocomplete(input);
+  },
 
   handleSubmit: function(e) {
     e.preventDefault();
     //empty string if no user input
     var find = e.currentTarget.find.value;
     var near = e.currentTarget.near.value;
-    var query = {find: find, near: near};
+    var place = this.autocomplete.getPlace();
+    var lat = place.geometry.location.lat();
+    var lng = place.geometry.location.lng();
+    var query = {find: find, near: {lat: lat, lng: lng}};
     this.props.history.pushState(null,'searchResults', query);
   },
 

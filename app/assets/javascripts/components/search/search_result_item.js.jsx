@@ -24,7 +24,7 @@ var SearchResultItem = React.createClass({
   },
 
   render: function() {
-    this.determineRatingInfo();
+    // this.determineRatingInfo();
     return (
       <div className="one-search-result clearfix">
 
