@@ -40,8 +40,8 @@ var FrontPage = React.createClass({
     return (
       <div>
         <div id="bg-images">
-          <img className="bottom" src="/assets/food.jpg" />
-          <img className="top" src="/assets/amsterdam.jpg" />
+          <img className="bottom" src="assets/food.jpg" />
+          <img className="top" src="assets/amsterdam.jpg" />
         </div>
 
         <div className="col-lg-6 col-lg-offset-3 text-center front-page">

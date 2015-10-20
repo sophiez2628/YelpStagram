@@ -1,7 +1,7 @@
 var SearchResults = React.createClass({
   getInitialState: function() {
-  return { searchResults: SearchResultsStore.all() };
-},
+    return { searchResults: SearchResultsStore.all() };
+  },
 
   componentDidMount: function() {
     ApiUtil.fetchSearchResults({find: this.props.location.query.find,
@@ -14,7 +14,6 @@ var SearchResults = React.createClass({
   },
 
   render: function() {
-    console.log("Search!");
     return (
       <div className="search-page">
         <ul className="search-results">

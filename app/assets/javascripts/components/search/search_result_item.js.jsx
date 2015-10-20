@@ -7,10 +7,10 @@ var SearchResultItem = React.createClass({
 
   showPlacePage: function() {
     var placeURL;
-    if (this.state.place.place_id) {
+    if (this.props.searchResult.place_id) {
       placeURL = "/searchResults/" + this.state.place.place_id;
     } else {
-      placeURL = "/searchResults/" + this.state.place.id;
+      placeURL = "/searchResults/" + this.props.searchResult.id;
     }
     this.history.pushState(null, placeURL);
   },
@@ -29,7 +29,6 @@ var SearchResultItem = React.createClass({
   },
 
   componentDidMount: function() {
-    // this.map = document.getElementById('map');
     this.map = window.map;
     var request;
     if (this.props.searchResult.place_id) {
@@ -64,23 +63,28 @@ var SearchResultItem = React.createClass({
         this.setState({place: placeDetails});
 
       }.bind(this)), 10000);
+    } else {
+        this.addMarker(this.props.searchResult, this.props.index);
+        var ave = this.calculateReviewAverage(this.props.searchResult.reviews);
+        var $rate = $(React.findDOMNode(this.refs.ratingBox));
+        $rate.rating({showClear: false, showCaption: false, readonly: true, size: 'xs'});
+        $rate.rating('update', ave);
+        console.log('componentDidMount');
     }
-
-    // this.sum = 0.0;
-    // var reviews = this.props.searchResult.reviews;
-    // reviews.forEach(function(review) {
-    //   this.sum += parseFloat(review.rating);
-    // }.bind(this));
-    // var ave = parseFloat(this.sum)/this.num_reviews;
-    // var $rate = $(React.findDOMNode(this.refs.ratingBox));
-    // $rate.rating({showClear: false, showCaption: false, readonly: true, size: 'xs'});
-    // $rate.rating('update', ave);
   },
 
   addMarker: function(place, index) {
     //currently only from the google api
-    var lat = place.geometry.location.lat();
-    var lng = place.geometry.location.lng();
+    var lat;
+    var lng;
+    if (place.place_id) {
+      lat = place.geometry.location.lat();
+      lng = place.geometry.location.lng();
+    } else {
+      lat = place.lat;
+      lng = place.lng;
+    }
+
     var marker = new google.maps.Marker({
       position: {lat: lat, lng: lng},
       label: (index + 1) + "",
@@ -90,20 +94,38 @@ var SearchResultItem = React.createClass({
   },
 
   render: function() {
-    // this.determineRatingInfo();
-    return (
-      <div className="one-search-result clearfix">
-        <img src={this.state.place.profilePicUrl} className="index-img"></img>
-        <div className="info">
-          <h3 onClick={this.showPlacePage} className="place-name">
-            {parseInt(this.props.index) + 1}. {this.state.place.name}
-          </h3>
-          <input ref="ratingBox" name="rating" className="rating"></input>
-          <span className="num-reviews">{this.state.place.user_ratings_total} reviews</span>
+    if (this.props.searchResult.place_id) {
+      return (
+        <div className="one-search-result clearfix">
+          <img src={this.state.place.profilePicUrl} className="index-img"></img>
+          <div className="info">
+            <h3 onClick={this.showPlacePage} className="place-name">
+              {parseInt(this.props.index) + 1}. {this.state.place.name}
+            </h3>
+            <input ref="ratingBox" name="rating" className="rating"></input>
+            <span className="num-reviews">{this.state.place.user_ratings_total} reviews</span>
+          </div>
+          <p>{this.state.place.formatted_address}</p>
         </div>
-        <p>{this.state.place.formatted_address}</p>
-      </div>
-    );
+      );
+    } else {
+      console.log("render!");
+      this.determineRatingInfo();
+      return (
+          <div className="one-search-result clearfix">
+            <img src={this.props.searchResult.photo} className="index-img"></img>
+            <div className="info">
+              <h3 onClick={this.showPlacePage} className="place-name">
+                {parseInt(this.props.index) + 1}. {this.props.searchResult.name}
+              </h3>
+              <input ref="ratingBox" name="rating" className="rating"></input>
+              <span className="num-reviews">{this.num_reviews} reviews</span>
+            </div>
+            <p>{this.props.searchResult.address}</p>
+          </div>
+        );
+    }
+
   }
 
 });
