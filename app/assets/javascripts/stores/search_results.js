@@ -1,6 +1,4 @@
 (function(root){
-  //when the contents of the BenchStore change, need to inform all
-  //interested parties by emitting a CHANGE_EVENT
   var CHANGE_EVENT = "change";
   var _myDatabaseResults = [];
   var _googleResults = [];
@@ -16,7 +14,6 @@
 
   root.SearchResultsStore = $.extend({}, EventEmitter.prototype, {
     all: function(){
-      //return a shallow copy so consumer cannot mutate original
       return _myDatabaseResults.concat(_googleResults);
     },
 

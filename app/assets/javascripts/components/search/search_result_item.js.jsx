@@ -6,7 +6,12 @@ var SearchResultItem = React.createClass({
 
 
   showPlacePage: function() {
-    var placeURL = "/searchResults/" + this.state.place.place_id;
+    var placeURL;
+    if (this.state.place.place_id) {
+      placeURL = "/searchResults/" + this.state.place.place_id;
+    } else {
+      placeURL = "/searchResults/" + this.state.place.id;
+    }
     this.history.pushState(null, placeURL);
   },
 
@@ -26,36 +31,40 @@ var SearchResultItem = React.createClass({
   componentDidMount: function() {
     // this.map = document.getElementById('map');
     this.map = window.map;
-    var request = {
-      placeId: this.props.searchResult.place_id
-    };
-    var service = new google.maps.places.PlacesService(this.map);
-    window.setTimeout(service.getDetails(request, function(placeDetails, status) {
-      var $rate = $(React.findDOMNode(this.refs.ratingBox));
-      $rate.rating({showClear: false, showCaption: false, readonly: true, size: 'xs'});
-      if (placeDetails.rating) {
-        $rate.rating('update', placeDetails.rating);
-      } else if (!placeDetails.rating && placeDetails.reviews ) {
-        var ave = this.calculateReviewAverage(placeDetails.reviews);
-        $rate.rating('update', ave);
-      } else {
-        $rate.rating('update', 0);
-      }
+    var request;
+    if (this.props.searchResult.place_id) {
+      request = {
+        placeId: this.props.searchResult.place_id
+      };
 
-      if (!placeDetails.user_ratings_total) {
-        placeDetails.user_ratings_total = 0;
-      }
+      var service = new google.maps.places.PlacesService(this.map);
+      window.setTimeout(service.getDetails(request, function(placeDetails, status) {
+        var $rate = $(React.findDOMNode(this.refs.ratingBox));
+        $rate.rating({showClear: false, showCaption: false, readonly: true, size: 'xs'});
+        if (placeDetails.rating) {
+          $rate.rating('update', placeDetails.rating);
+        } else if (!placeDetails.rating && placeDetails.reviews ) {
+          var ave = this.calculateReviewAverage(placeDetails.reviews);
+          $rate.rating('update', ave);
+        } else {
+          $rate.rating('update', 0);
+        }
 
-      if (placeDetails.photos) {
-        placeDetails.profilePicUrl = placeDetails.photos[0].getUrl({'maxWidth': 200, 'maxHeight': 200});
-      } else {
-        placeDetails.profilePicUrl = "http://www.arinow.org/wp-content/uploads/2015/03/placeholder.jpg";
-      }
+        if (!placeDetails.user_ratings_total) {
+          placeDetails.user_ratings_total = 0;
+        }
 
-      this.addMarker(placeDetails, this.props.index);
-      this.setState({place: placeDetails});
+        if (placeDetails.photos) {
+          placeDetails.profilePicUrl = placeDetails.photos[0].getUrl({'maxWidth': 200, 'maxHeight': 200});
+        } else {
+          placeDetails.profilePicUrl = "http://www.arinow.org/wp-content/uploads/2015/03/placeholder.jpg";
+        }
 
-    }.bind(this)), 10000);
+        this.addMarker(placeDetails, this.props.index);
+        this.setState({place: placeDetails});
+
+      }.bind(this)), 10000);
+    }
 
     // this.sum = 0.0;
     // var reviews = this.props.searchResult.reviews;

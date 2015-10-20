@@ -4,8 +4,9 @@ var Map = React.createClass({
     var map = React.findDOMNode(this.refs.map);
     var mapOptions;
     if (this.props.place) {
+      //map should only have a prop in the individual page
     } else {
-      console.log("map search");
+      //need to readjust mapOptions so that the focus is on the search result
       mapOptions = {
         center: {lat: 37.7758, lng: -122.435},
         zoom: 13
@@ -13,9 +14,12 @@ var Map = React.createClass({
       // SearchResultsStore.addChangeListener(this.onSearchResultsChange);
       this.map = new google.maps.Map(map, mapOptions);
       window.map = new google.maps.Map(map, mapOptions);
+      //grabbing user input from the query string
       var find = this.props.location.query.find;
       var near = {lat: parseFloat(this.props.location.query.near.lat),
                   lng: parseFloat(this.props.location.query.near.lng)};
+      //the request to be sent to google api
+      //radius is in meters
       var request = {
         location: near,
         radius: 500,
@@ -23,6 +27,7 @@ var Map = React.createClass({
       };
       var service = new google.maps.places.PlacesService(this.map);
       service.radarSearch(request, function(places) {
+        //response from google api
         ApiActions.receiveGooglePlaces(places);
       }.bind(this));
     }
@@ -46,20 +51,19 @@ var Map = React.createClass({
     marker.setMap(this.map);
   },
 
-  onSearchResultsChange: function() {
-    // var searchResults = SearchResultsStore.all();
-    // searchResults.forEach(function(result, index) {
-    //   var marker = new google.maps.Marker({
-    //     position: {lat: result.lat, lng: result.lng },
-    //     label: (index + 1) + "",
-    //     title: result.name
-    //   });
-    //   marker.setMap(this.map);
-    // }.bind(this));
-  },
+  // onSearchResultsChange: function() {
+  //   // var searchResults = SearchResultsStore.all();
+  //   // searchResults.forEach(function(result, index) {
+  //   //   var marker = new google.maps.Marker({
+  //   //     position: {lat: result.lat, lng: result.lng },
+  //   //     label: (index + 1) + "",
+  //   //     title: result.name
+  //   //   });
+  //   //   marker.setMap(this.map);
+  //   // }.bind(this));
+  // },
 
   render: function() {
-    console.log("Map");
     var name;
     if (this.props.place) {
       name = "one-place";

@@ -1,5 +1,6 @@
 var FrontPage = React.createClass({
   componentDidMount: function() {
+    //finds user's current location
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
       this.pos = {
@@ -8,10 +9,12 @@ var FrontPage = React.createClass({
       };
       }.bind(this));
     }
+    //adds google's autocomplete functionality
     var input = document.getElementById('two');
     this.autocomplete = new google.maps.places.Autocomplete(input);
   },
 
+  //when user submits form
   handleSubmit: function(e) {
     e.preventDefault();
     //empty string if no user input
@@ -23,6 +26,7 @@ var FrontPage = React.createClass({
       lat = place.geometry.location.lat();
       lng = place.geometry.location.lng();
     } else {
+      //user's current location
       lat = this.pos.lat;
       lng = this.pos.lng;
     }
