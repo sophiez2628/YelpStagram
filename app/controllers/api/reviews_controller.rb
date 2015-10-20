@@ -7,8 +7,7 @@ class Api::ReviewsController < ApplicationController
   end
 
   def index
-    reviews = Review.fetch(params[:place_id].to_i)
-    render json: reviews
+    @reviews = Review.fetch(params[:place_id].to_i).includes(:user)
   end
 
   private

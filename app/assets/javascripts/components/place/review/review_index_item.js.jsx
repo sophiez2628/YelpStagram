@@ -20,7 +20,7 @@ var ReviewIndexItem = React.createClass({
     } else {
       return (
           <div>
-            <span></span>
+            <span>{this.props.review.user.first_name} {this.props.review.user.last_name}</span>
               <div className="rating-info">
                 <input ref="ratingBox" name="rating" className="rating"></input>
               </div>

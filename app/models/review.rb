@@ -16,7 +16,12 @@ class Review < ActiveRecord::Base
              primary_key: :id,
              foreign_key: :place_id,
              class_name: "Place"
-             
+
+  belongs_to :user,
+              primary_key: :id,
+              foreign_key: :author_id,
+              class_name: "User"
+
   def self.fetch(place_id)
     Review.where('place_id = ?', place_id)
   end
