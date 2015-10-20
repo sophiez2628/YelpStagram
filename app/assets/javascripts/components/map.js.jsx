@@ -1,12 +1,4 @@
 var Map = React.createClass({
-  addMarker: function(result, index) {
-    //currently only from the google api
-    var marker = new google.maps.Marker({
-      position: result.geometry.location,
-      label: (index + 1) + ""
-    });
-    marker.setMap(this.map);
-  },
 
   componentDidMount: function(){
     var map = React.findDOMNode(this.refs.map);
@@ -18,7 +10,7 @@ var Map = React.createClass({
         center: {lat: 37.7758, lng: -122.435},
         zoom: 13
       };
-      SearchResultsStore.addChangeListener(this.onSearchResultsChange);
+      // SearchResultsStore.addChangeListener(this.onSearchResultsChange);
       this.map = new google.maps.Map(map, mapOptions);
       window.map = new google.maps.Map(map, mapOptions);
       var find = this.props.location.query.find;
@@ -31,11 +23,6 @@ var Map = React.createClass({
       };
       var service = new google.maps.places.PlacesService(this.map);
       service.radarSearch(request, function(places) {
-        // for (var i = 0; i < places.length; i++ ) {
-        //   console.log(i);
-        //   this.addMarker(places[i], i);
-        // }
-
         ApiActions.receiveGooglePlaces(places);
       }.bind(this));
     }

@@ -35,7 +35,7 @@ var SearchResultItem = React.createClass({
       $rate.rating({showClear: false, showCaption: false, readonly: true, size: 'xs'});
       if (placeDetails.rating) {
         $rate.rating('update', placeDetails.rating);
-      } else if (!placeDetails.rating && placeDetails.reviews.length !== 0) {
+      } else if (!placeDetails.rating && placeDetails.reviews ) {
         var ave = this.calculateReviewAverage(placeDetails.reviews);
         $rate.rating('update', ave);
       } else {
@@ -51,9 +51,11 @@ var SearchResultItem = React.createClass({
       } else {
         placeDetails.profilePicUrl = "http://www.arinow.org/wp-content/uploads/2015/03/placeholder.jpg";
       }
-        this.setState({place: placeDetails});
-    }.bind(this)), 10000);
 
+      this.addMarker(placeDetails, this.props.index);
+      this.setState({place: placeDetails});
+
+    }.bind(this)), 10000);
 
     // this.sum = 0.0;
     // var reviews = this.props.searchResult.reviews;
@@ -64,6 +66,18 @@ var SearchResultItem = React.createClass({
     // var $rate = $(React.findDOMNode(this.refs.ratingBox));
     // $rate.rating({showClear: false, showCaption: false, readonly: true, size: 'xs'});
     // $rate.rating('update', ave);
+  },
+
+  addMarker: function(place, index) {
+    //currently only from the google api
+    var lat = place.geometry.location.lat();
+    var lng = place.geometry.location.lng();
+    var marker = new google.maps.Marker({
+      position: {lat: lat, lng: lng},
+      label: (index + 1) + "",
+      title: place.name
+    });
+    marker.setMap(window.map);
   },
 
   render: function() {
