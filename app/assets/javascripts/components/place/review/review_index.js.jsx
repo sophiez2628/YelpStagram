@@ -12,8 +12,8 @@ var ReviewIndex = React.createClass({
       <div>
         <ul className="reviews">
             {
-              this.state.reviews.map(function(review) {
-                return <li><ReviewIndexItem key={review.id} review={review} /></li>;
+              this.state.reviews.map(function(review, index) {
+                return <li><ReviewIndexItem key={index} review={review} /></li>;
               })
             }
         </ul>

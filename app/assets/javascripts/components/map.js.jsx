@@ -81,7 +81,7 @@ var Map = React.createClass({
     }
 
     return (
-      <div className="multiple-place">
+      <div className={name}>
         <div className={name} ref="map" id="map"></div>
       </div>
     );
