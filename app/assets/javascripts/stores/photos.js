@@ -46,10 +46,8 @@
 
     dispatcherID: AppDispatcher.register(function(action){
       if(action.actionType === PhotosConstants.PHOTOS_RECEIVED){
-        console.log("photos received");
         resetPhotos(action.photos);
       } else if(action.actionType === PhotosConstants.PHOTO_RECEIVED) {
-        console.log("photo received");
         resetPhoto(action.photo);
       }
     })

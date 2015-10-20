@@ -6,14 +6,27 @@ var ReviewIndexItem = React.createClass({
   },
 
   render: function() {
-    return (
-        <div>
-          <span>{this.props.review.author_name}</span>
-            <div className="rating-info">
-              <input ref="ratingBox" name="rating" className="rating"></input>
-            </div>
-          <p>{this.props.review.text}</p>
-        </div>
-    );
+    //only rendering once?
+    if (this.props.review.text) {
+      return (
+          <div>
+            <span>{this.props.review.author_name}</span>
+              <div className="rating-info">
+                <input ref="ratingBox" name="rating" className="rating"></input>
+              </div>
+            <p>{this.props.review.text}</p>
+          </div>
+      );
+    } else {
+      return (
+          <div>
+            <span></span>
+              <div className="rating-info">
+                <input ref="ratingBox" name="rating" className="rating"></input>
+              </div>
+            <p>{this.props.review.body}</p>
+          </div>
+      );
+    }
   }
 });

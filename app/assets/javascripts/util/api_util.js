@@ -47,7 +47,7 @@ ApiUtil = {
       data: place_id,
       dataType: 'json',
       success: function(photos) {
-        // ApiActions.receivePhotos(photos);
+        ApiActions.receivePhotos(photos);
       }
     });
   },

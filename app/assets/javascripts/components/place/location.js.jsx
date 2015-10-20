@@ -12,7 +12,7 @@ var PlaceLoc = React.createClass({
       <div className="place-location">
         <Map place={this.state.place} />
         <div>
-          {this.state.place.address}
+          {this.state.place.address || this.state.place.formatted_address}
         </div>
       </div>
     );

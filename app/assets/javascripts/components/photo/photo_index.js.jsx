@@ -5,13 +5,16 @@ var PhotoIndex = React.createClass({
 
   componentDidMount: function() {
     PhotosStore.addChangeListener(this.onChange);
-    // ApiUtil.fetchPhotos({place_id: this.props.placeId});
   },
 
   componentWillReceiveProps: function(props) {
+    if (!props.place.place_id) {
+      ApiUtil.fetchPhotos({place_id: props.place.id});
+    }
+
     if (props.photos) {
       window.setTimeout(ApiActions.receivePhotos.bind(this, props.photos), 1000);
-    } else {
+    } else if (!props.photos && props.place.place_id) {
       this.setState({photo: props.profilePic});
     }
   },
@@ -28,7 +31,19 @@ var PhotoIndex = React.createClass({
       slidesToScroll: 1
     };
 
-    if (this.state.photos.length !== 0) {
+    if (this.props.place.web_url) {
+      return (
+        <div id="place-photos">
+          <Slider {...settings}>
+          {
+            this.state.photos.map(function(photo) {
+              return <div key={photo.id}><img src={photo.url}></img></div>;
+            })
+          }
+        </Slider>
+        </div>
+      );
+    } else if (this.state.photos.length !== 0) {
       return (
         <div id="place-photos">
           <Slider {...settings}>
@@ -40,7 +55,7 @@ var PhotoIndex = React.createClass({
         </Slider>
         </div>
       );
-    } else {
+    } else if (this.state.photos.length === 0) {
       return (
         <div id="place-photos">
           <Slider {...settings}>
