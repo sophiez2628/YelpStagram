@@ -5,7 +5,11 @@ var PhotoIndex = React.createClass({
 
   componentDidMount: function() {
     PhotosStore.addChangeListener(this.onChange);
-    ApiUtil.fetchPhotos({place_id: this.props.placeId});
+    // ApiUtil.fetchPhotos({place_id: this.props.placeId});
+  },
+
+  componentWillReceiveProps: function(props) {
+    window.setTimeout(ApiActions.receivePhotos.bind(this, props.photos), 1000);
   },
 
   onChange: function() {
@@ -13,7 +17,6 @@ var PhotoIndex = React.createClass({
   },
 
   render: function() {
-
     var settings = {
       infinite: true,
       speed: 500,
@@ -25,7 +28,7 @@ var PhotoIndex = React.createClass({
         <Slider {...settings}>
         {
           this.state.photos.map(function(photo) {
-            return <div key={photo.id}><img src={photo.url}></img></div>;
+            return <div key={photo.id}><img src={photo.getUrl({'maxWidth': 200, 'maxHeight': 200})}></img></div>;
           })
         }
       </Slider>

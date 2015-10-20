@@ -6,7 +6,7 @@ var SearchResultItem = React.createClass({
 
 
   showPlacePage: function() {
-    var placeURL = "/searchResults/" + this.state.place.id;
+    var placeURL = "/searchResults/" + this.state.place.place_id;
     this.history.pushState(null, placeURL);
   },
 
@@ -30,6 +30,15 @@ var SearchResultItem = React.createClass({
         $rate.rating('update', 0);
       }
 
+      if (!placeDetails.user_ratings_total) {
+        placeDetails.user_ratings_total = 0;
+      }
+
+      if (placeDetails.photos) {
+        placeDetails.profilePicUrl = placeDetails.photos[0].getUrl({'maxWidth': 200, 'maxHeight': 200});
+      } else {
+        placeDetails.profilePicUrl = "http://www.arinow.org/wp-content/uploads/2015/03/placeholder.jpg";
+      }
         this.setState({place: placeDetails});
     }.bind(this)), 10000);
 
@@ -49,7 +58,7 @@ var SearchResultItem = React.createClass({
     // this.determineRatingInfo();
     return (
       <div className="one-search-result clearfix">
-        <img src="http://www.arinow.org/wp-content/uploads/2015/03/placeholder.jpg" className="index-img"></img>
+        <img src={this.state.place.profilePicUrl} className="index-img"></img>
         <div className="info">
           <h3 onClick={this.showPlacePage} className="place-name">
             {parseInt(this.props.index) + 1}. {this.state.place.name}

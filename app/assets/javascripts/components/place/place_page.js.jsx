@@ -2,33 +2,56 @@ var PlacePage = React.createClass({
   mixins: [ReactRouter.History],
 
   getInitialState: function() {
-    return { place: {}, reviews: [] };
+    return { place: {name: ""}, reviews: [] };
   },
 
   componentDidMount: function() {
     PlaceStore.addChangeListener(this.onPlaceChange);
-    ReviewsStore.addChangeListener(this.onReviewsChange);
+    // ReviewsStore.addChangeListener(this.onReviewsChange);
 
-    ApiUtil.fetchPlace({place_id: this.props.params.placeId});
-    ApiUtil.fetchReviews({place_id: this.props.params.placeId});
+    this.map = window.map;
+    var request = {
+      placeId: this.props.params.placeId
+    };
+    var service = new google.maps.places.PlacesService(this.map);
+    service.getDetails(request, function(placeDetails, status) {
+      //obtain details of the place
+      ApiActions.receivePlace(placeDetails);
+    });
+
+    // ApiUtil.fetchPlace({place_id: this.props.params.placeId});
+    // ApiUtil.fetchReviews({place_id: this.props.params.placeId});
   },
 
   onPlaceChange: function() {
     this.setState({ place: PlaceStore.all() });
+    var $rate = $(React.findDOMNode(this.refs.ratingBox));
+    $rate.rating({showClear: false, showCaption: false, readonly: true, size: 'xs'});
+    if (this.state.place.rating) {
+      $rate.rating('update', this.state.place.rating);
+    } else {
+      $rate.rating('update', 0);
+    }
+
+
+    // if (!this.state.place.user_ratings_total) {
+    //   var placeDetails = this.state.place;
+    //   placeDetails.user_ratings_total = 0;
+    //   this.setState({place: placeDetails});
+    // }
   },
 
   onReviewsChange: function() {
-    this.setState({ reviews: ReviewsStore.all() });
-    //compute average
-    var sum = 0.0;
-    this.state.reviews.forEach(function(review) {
-      sum += parseFloat(review.rating);
-    });
-    var ave = parseFloat(sum)/this.state.reviews.length;
+    // this.setState({ reviews: ReviewsStore.all() });
+    // //compute average
+    // var sum = 0.0;
+    // this.state.reviews.forEach(function(review) {
+    //   sum += parseFloat(review.rating);
+    // });
+    // var ave = parseFloat(sum)/this.state.reviews.length;
+    //
 
-    var $rate = $(React.findDOMNode(this.refs.ratingBox));
-    $rate.rating({showClear: false, showCaption: false, readonly: true, size: 'xs'});
-    $rate.rating('update', ave);
+
   },
 
   handleWriteReview: function(e) {
@@ -61,15 +84,15 @@ var PlacePage = React.createClass({
 
         <div className="rating-info">
           <input ref="ratingBox" name="rating" className="rating"></input>
-          <span className="num-reviews">{this.state.reviews.length} reviews</span>
+          <span className="num-reviews">{this.state.place.user_ratings_total} reviews</span>
         </div>
-        
+
         <div className="map-photos clearfix">
           <PlaceLoc place={this.state.place} />
-          <PhotoIndex placeId={this.props.params.placeId}/>
+          <PhotoIndex photos={this.state.place.photos}/>
         </div>
         <h3>reviews</h3>
-        <ReviewIndex reviews={this.state.reviews} />
+        <ReviewIndex reviews={this.state.place.reviews} />
       </div>
     );
   }

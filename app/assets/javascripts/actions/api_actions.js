@@ -13,6 +13,7 @@ ApiActions = {
     });
   },
 
+
   receiveReviews: function(reviews){
     AppDispatcher.dispatch({
       actionType: ReviewsConstants.REVIEWS_RECEIVED,
@@ -39,5 +40,6 @@ ApiActions = {
       actionType: PlaceConstants.PLACE_RECEIVED,
       place: place
     });
-  }
+  },
+
 };

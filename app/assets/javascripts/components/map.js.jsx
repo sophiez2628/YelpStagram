@@ -13,6 +13,7 @@ var Map = React.createClass({
     var mapOptions;
     if (this.props.place) {
     } else {
+      console.log("map search");
       mapOptions = {
         center: {lat: 37.7758, lng: -122.435},
         zoom: 13
@@ -43,8 +44,10 @@ var Map = React.createClass({
   componentWillReceiveProps: function(prop) {
     //for each individual page
     var map = React.findDOMNode(this.refs.map);
-    var lat = prop.place.lat;
-    var lng = prop.place.lng;
+    var lat = prop.place.geometry.location.lat();
+    var lng = prop.place.geometry.location.lng();
+    // var lat = prop.place.lat;
+    // var lng = prop.place.lng;
     var mapOptions = {
       center: {lat: lat, lng: lng},
       zoom: 13
