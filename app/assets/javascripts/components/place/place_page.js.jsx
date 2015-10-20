@@ -16,6 +16,9 @@ var PlacePage = React.createClass({
     var service = new google.maps.places.PlacesService(this.map);
     service.getDetails(request, function(placeDetails, status) {
       //obtain details of the place
+      if (!placeDetails.photos) {
+        placeDetails.profilePicUrl = "http://www.arinow.org/wp-content/uploads/2015/03/placeholder.jpg";
+      }
       ApiActions.receivePlace(placeDetails);
     });
 
@@ -29,6 +32,9 @@ var PlacePage = React.createClass({
     $rate.rating({showClear: false, showCaption: false, readonly: true, size: 'xs'});
     if (this.state.place.rating) {
       $rate.rating('update', this.state.place.rating);
+    } else if (!this.state.place.rating && this.state.place.reviews.length !== 0) {
+      var ave = this.calculateReviewAverage(this.state.place.reviews);
+      $rate.rating('update', ave);
     } else {
       $rate.rating('update', 0);
     }
@@ -39,6 +45,15 @@ var PlacePage = React.createClass({
     //   placeDetails.user_ratings_total = 0;
     //   this.setState({place: placeDetails});
     // }
+  },
+
+  calculateReviewAverage: function(reviews) {
+    var sum = 0.0;
+    reviews.forEach(function(review) {
+      sum += parseFloat(review.rating);
+    });
+    var ave = parseFloat(sum)/reviews.length;
+    return ave;
   },
 
   onReviewsChange: function() {
@@ -89,7 +104,7 @@ var PlacePage = React.createClass({
 
         <div className="map-photos clearfix">
           <PlaceLoc place={this.state.place} />
-          <PhotoIndex photos={this.state.place.photos}/>
+          <PhotoIndex photos={this.state.place.photos} profilePic={this.state.place.profilePicUrl}/>
         </div>
         <h3>reviews</h3>
         <ReviewIndex reviews={this.state.place.reviews} />

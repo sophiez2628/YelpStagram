@@ -14,6 +14,15 @@ var SearchResultItem = React.createClass({
     this.num_reviews = this.props.searchResult.reviews.length;
   },
 
+  calculateReviewAverage: function(reviews) {
+    var sum = 0.0;
+    reviews.forEach(function(review) {
+      sum += parseFloat(review.rating);
+    });
+    var ave = parseFloat(sum)/reviews.length;
+    return ave;
+  },
+
   componentDidMount: function() {
     // this.map = document.getElementById('map');
     this.map = window.map;
@@ -26,6 +35,9 @@ var SearchResultItem = React.createClass({
       $rate.rating({showClear: false, showCaption: false, readonly: true, size: 'xs'});
       if (placeDetails.rating) {
         $rate.rating('update', placeDetails.rating);
+      } else if (!placeDetails.rating && placeDetails.reviews.length !== 0) {
+        var ave = this.calculateReviewAverage(placeDetails.reviews);
+        $rate.rating('update', ave);
       } else {
         $rate.rating('update', 0);
       }

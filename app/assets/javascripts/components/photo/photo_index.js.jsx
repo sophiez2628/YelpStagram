@@ -1,6 +1,6 @@
 var PhotoIndex = React.createClass({
   getInitialState: function() {
-    return { photos: PhotosStore.all() };
+    return { photos: PhotosStore.all(), photo: {} };
   },
 
   componentDidMount: function() {
@@ -9,7 +9,11 @@ var PhotoIndex = React.createClass({
   },
 
   componentWillReceiveProps: function(props) {
-    window.setTimeout(ApiActions.receivePhotos.bind(this, props.photos), 1000);
+    if (props.photos) {
+      window.setTimeout(ApiActions.receivePhotos.bind(this, props.photos), 1000);
+    } else {
+      this.setState({photo: props.profilePic});
+    }
   },
 
   onChange: function() {
@@ -23,16 +27,27 @@ var PhotoIndex = React.createClass({
       slidesToShow: 3,
       slidesToScroll: 1
     };
-    return (
-      <div id="place-photos">
-        <Slider {...settings}>
-        {
-          this.state.photos.map(function(photo) {
-            return <div key={photo.id}><img src={photo.getUrl({'maxWidth': 200, 'maxHeight': 200})}></img></div>;
-          })
-        }
-      </Slider>
-      </div>
-    );
+
+    if (this.state.photos.length !== 0) {
+      return (
+        <div id="place-photos">
+          <Slider {...settings}>
+          {
+            this.state.photos.map(function(photo) {
+              return <div key={photo.id}><img src={photo.getUrl({'maxWidth': 200, 'maxHeight': 200})}></img></div>;
+            })
+          }
+        </Slider>
+        </div>
+      );
+    } else {
+      return (
+        <div id="place-photos">
+          <Slider {...settings}>
+            <div><img src={this.state.photo}></img></div>
+          </Slider>
+        </div>
+      );
+    }
   }
 });
