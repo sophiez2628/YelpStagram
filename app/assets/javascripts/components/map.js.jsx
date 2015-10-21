@@ -9,7 +9,7 @@ var Map = React.createClass({
       //need to readjust mapOptions so that the focus is on the search result
       mapOptions = {
         center: {lat: 37.7758, lng: -122.435},
-        zoom: 13
+        zoom: 14
       };
       // SearchResultsStore.addChangeListener(this.onSearchResultsChange);
       this.map = new google.maps.Map(map, mapOptions);

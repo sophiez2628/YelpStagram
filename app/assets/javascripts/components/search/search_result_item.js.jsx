@@ -91,6 +91,11 @@ var SearchResultItem = React.createClass({
       title: place.name
     });
     marker.setMap(window.map);
+
+    //recenter map to the first marker
+    if (index === 0) {
+      window.map.setCenter({lat: lat, lng: lng});
+    }
   },
 
   render: function() {
