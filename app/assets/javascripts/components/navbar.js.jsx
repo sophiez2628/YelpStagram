@@ -4,9 +4,9 @@ mixins: [ReactRouter.History],
 
 componentDidMount: function() {
   //finds user's current location
+  console.log("nav did mount");
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
-
     console.log("get current position");
     this.pos = {
       lat: position.coords.latitude,
@@ -37,7 +37,6 @@ handleSubmit: function(e) {
   }
   var query = {find: find, near: {lat: lat, lng: lng}};
   //pass the find and near info to search results page as a query
-  var map = React.findDOMNode(window.Map.refs.map);
   //fire API Action to cause Map to perform search again
   ApiActions.receiveQuery(query);
 },
@@ -71,6 +70,7 @@ signOut: function() {
 },
 
 render: function() {
+  console.log("nav render");
   var list = this.navContent();
   return (
       <nav className="navbar navbar-default">
@@ -79,7 +79,7 @@ render: function() {
 
             <p className="navbar-text">YelpStagram</p>
 
-            <form className="navbar-form navbar-left" role="search" onSubmit={this.handleSubmit}>
+            <form className="navbar-form navbar-left" id="navbar" role="search" onSubmit={this.handleSubmit}>
 
 
                 <input type="text" className="form-control" id="bar" placeholder="find" name="find"></input>

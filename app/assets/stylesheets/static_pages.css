@@ -142,6 +142,9 @@ div.container-fluid {
   width: 300px;
 }
 
+#navbar {
+  margin-left: 200px;
+}
 
 #auto-search {
   width: 300px;

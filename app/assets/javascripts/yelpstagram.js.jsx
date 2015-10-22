@@ -8,7 +8,6 @@ $(document).ready(function() {
      render: function(){
        return (
            <div id="second-container">
-             <Navbar />
              {this.props.children}
            </div>
        );
@@ -16,8 +15,7 @@ $(document).ready(function() {
    });
    var routes = (
        <Route path="/" component={App}>
-         <IndexRoute component={FrontPage}/>
-         <Route path="/searchResults" component={{search: SearchResults, map: Map}} />
+         <IndexRoute path="/searchResults" component={{nav: Navbar, search: SearchResults, map: Map}} />
          <Route path="/searchResults/:placeId" component={PlacePage} />
          <Route path="/writeReview/:placeId" component={WriteReview} />
        </Route>

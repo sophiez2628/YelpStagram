@@ -4,6 +4,7 @@ var SearchResults = React.createClass({
   },
 
   componentDidMount: function() {
+    console.log("search results mount");
     window.SearchResultsStore.addChangeListener(this.onSearchResultsChange);
   },
 
@@ -36,6 +37,7 @@ var SearchResults = React.createClass({
   },
 
   render: function() {
+    console.log("search results render");
     if (this.state.searchResults.length !== 0) {
       return (
         <div className="search-page">
