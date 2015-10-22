@@ -77,8 +77,8 @@ render: function() {
         <div className="container-fluid">
           <div className="navbar-header">
 
-            <p className="navbar-text">YelpStagram</p>
 
+                <p id="logo-container"><img src="images/yelp.png"></img></p>
             <form className="navbar-form navbar-left" id="navbar" role="search" onSubmit={this.handleSubmit}>
 
 
@@ -89,7 +89,11 @@ render: function() {
                 <input type="text" className="form-control" placeholder="near" id="auto-search"></input>
 
 
-              <input type="submit" className="btn btn-default" id="search-button"></input>
+              <button type="submit" className="btn btn-default" id="search-button">
+                <span className="glyphicon glyphicon-search"></span>
+              </button>
+
+
             </form>
 
             <button type="button" className="navbar-toggle collapsed"

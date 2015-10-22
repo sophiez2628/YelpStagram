@@ -43,3 +43,7 @@
 .search-results {
   padding-left: 5px;
 }
+
+nav.navbar-default {
+  margin: 0px;
+}
