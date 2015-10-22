@@ -24,13 +24,11 @@ var SearchResultItem = React.createClass({
   },
 
   componentDidMount: function() {
+    //markers being set to window.map
     this.map = window.map;
     var request = { placeId: this.props.searchResult.place_id };
     var service = new google.maps.places.PlacesService(this.map);
-    console.log("search result item");
     service.getDetails(request, function(placeDetails, status) {
-      console.log(placeDetails);
-      console.log(status);
       if (placeDetails !== null) {
         var $rate = $(React.findDOMNode(this.refs.ratingBox));
         $rate.rating({showClear: false, showCaption: false, readonly: true, size: 'xs'});
@@ -72,18 +70,22 @@ var SearchResultItem = React.createClass({
       lat = place.lat;
       lng = place.lng;
     }
-
-    var marker = new google.maps.Marker({
+    index = index + 1;
+    this.marker = new google.maps.Marker({
       position: {lat: lat, lng: lng},
-      label: (index + 1) + "",
+      icon: 'http://maps.google.com/mapfiles/kml/paddle/' + index + '.png',
       title: place.name
     });
-    marker.setMap(window.map);
-
+    this.marker.setMap(this.map);
     //recenter map to the first marker
     if (index === 0) {
-      window.map.setCenter({lat: lat, lng: lng});
+      this.map.setCenter({lat: lat, lng: lng});
     }
+  },
+
+  componentWillUnmount: function () {
+    this.marker.setMap(null);
+    this.marker = null;
   },
 
   render: function() {

@@ -4,10 +4,8 @@ mixins: [ReactRouter.History],
 
 componentDidMount: function() {
   //finds user's current location
-  console.log("nav did mount");
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
-    console.log("get current position");
     this.pos = {
       lat: position.coords.latitude,
       lng: position.coords.longitude

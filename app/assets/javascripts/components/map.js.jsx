@@ -3,38 +3,40 @@ var Map = React.createClass({
     return {query: undefined };
   },
 
+  checkForMarkers: function() {
+
+  },
+
   fetchFromGoogleAPI: function(query) {
+    this.checkForMarkers();
     //grabbing user input from the query string
+
     var find, near, lat, lng;
     if (query) {
       find = query.find;
       near = query.near;
-    } else if (this.props.location.query.find) {
-      find = this.props.location.query.find;
-      near = {lat: parseFloat(this.props.location.query.near.lat),
-                  lng: parseFloat(this.props.location.query.near.lng)};
     } else {
-      find = "fun";
+      find = "food";
       near = { lat: 37.7749290, lng: -122.4194160 };
     }
     //the request to be sent to google api
     //radius is in meters
     var request = {
       location: near,
-      radius: 2000,
+      radius: 1000,
       keyword: find
     };
     var service = new google.maps.places.PlacesService(this.map);
 
     service.radarSearch(request, function(places) {
-      console.log(places);
       //response from google api
-      ApiActions.receiveGooglePlaces(places);
+      if (places) {
+        ApiActions.receiveGooglePlaces(places);
+      }
     }.bind(this));
   },
 
   componentDidMount: function(){
-    console.log("map did mount");
     QueryStore.addChangeListener(this.onQueryChange);
     var map = React.findDOMNode(this.refs.map);
     var mapOptions;
@@ -88,7 +90,6 @@ var Map = React.createClass({
   },
 
   render: function() {
-    console.log("map render");
     var name;
     if (this.props.place) {
       name = "one-place";
