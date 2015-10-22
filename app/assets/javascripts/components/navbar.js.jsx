@@ -38,7 +38,8 @@ handleSubmit: function(e) {
   var query = {find: find, near: {lat: lat, lng: lng}};
   //pass the find and near info to search results page as a query
   var map = React.findDOMNode(window.Map.refs.map);
-  map.fetchFromGoogleAPI(query);
+  //fire API Action to cause Map to perform search again
+  ApiActions.receiveQuery(query);
 },
 
 navContent: function () {

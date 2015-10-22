@@ -10,7 +10,7 @@
 
   var resetGoogleResults = function(results) {
     console.log("google database")
-    _googleResults = results.slice(0,10);
+    _googleResults = results.slice(0,20);
     SearchResultsStore.onChange();
   };
 

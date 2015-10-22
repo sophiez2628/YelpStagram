@@ -6,12 +6,7 @@ var SearchResultItem = React.createClass({
 
 
   showPlacePage: function() {
-    var placeURL;
-    if (this.props.searchResult.place_id) {
-      placeURL = "/searchResults/" + this.state.place.place_id;
-    } else {
-      placeURL = "/searchResults/" + this.props.searchResult.id;
-    }
+    var placeURL = "/searchResults/" + this.state.place.place_id;
     this.history.pushState(null, placeURL);
   },
 
@@ -30,49 +25,40 @@ var SearchResultItem = React.createClass({
 
   componentDidMount: function() {
     this.map = window.map;
-    var request;
-    if (this.props.searchResult.place_id) {
-      request = {
-        placeId: this.props.searchResult.place_id
-      };
-
-      var service = new google.maps.places.PlacesService(this.map);
-      window.setTimeout(service.getDetails(request, function(placeDetails, status) {
-        if (placeDetails !== null) {
-          var $rate = $(React.findDOMNode(this.refs.ratingBox));
-          $rate.rating({showClear: false, showCaption: false, readonly: true, size: 'xs'});
-          if (placeDetails.rating) {
-            $rate.rating('update', placeDetails.rating);
-          } else if (!placeDetails.rating && placeDetails.reviews ) {
-            var ave = this.calculateReviewAverage(placeDetails.reviews);
-            $rate.rating('update', ave);
-          } else {
-            $rate.rating('update', 0);
-          }
-
-          if (!placeDetails.user_ratings_total) {
-            placeDetails.user_ratings_total = 0;
-          }
-
-          if (placeDetails.photos) {
-            placeDetails.profilePicUrl = placeDetails.photos[0].getUrl({'maxWidth': 200, 'maxHeight': 200});
-          } else {
-            placeDetails.profilePicUrl = "http://www.arinow.org/wp-content/uploads/2015/03/placeholder.jpg";
-          }
-
-          this.addMarker(placeDetails, this.props.index);
-          this.setState({place: placeDetails});
-        }
-
-      }.bind(this)), 10000);
-    } else {
-        this.addMarker(this.props.searchResult, this.props.index);
-        var ave = this.calculateReviewAverage(this.props.searchResult.reviews);
+    var request = { placeId: this.props.searchResult.place_id };
+    var service = new google.maps.places.PlacesService(this.map);
+    console.log("search result item");
+    service.getDetails(request, function(placeDetails, status) {
+      console.log(placeDetails);
+      console.log(status);
+      if (placeDetails !== null) {
         var $rate = $(React.findDOMNode(this.refs.ratingBox));
         $rate.rating({showClear: false, showCaption: false, readonly: true, size: 'xs'});
-        $rate.rating('update', ave);
-        console.log('componentDidMount');
-    }
+        if (placeDetails.rating) {
+          $rate.rating('update', placeDetails.rating);
+        } else if (!placeDetails.rating && placeDetails.reviews ) {
+          var ave = this.calculateReviewAverage(placeDetails.reviews);
+          $rate.rating('update', ave);
+        } else {
+          $rate.rating('update', 0);
+        }
+
+        if (!placeDetails.user_ratings_total) {
+          placeDetails.user_ratings_total = 0;
+        }
+
+        if (placeDetails.photos) {
+          placeDetails.profilePicUrl = placeDetails.photos[0].getUrl({'maxWidth': 200, 'maxHeight': 200});
+        } else {
+          placeDetails.profilePicUrl = "http://www.arinow.org/wp-content/uploads/2015/03/placeholder.jpg";
+        }
+
+        this.addMarker(placeDetails, this.props.index);
+        this.setState({place: placeDetails});
+      }
+
+      }.bind(this));
+
   },
 
   addMarker: function(place, index) {
@@ -101,7 +87,6 @@ var SearchResultItem = React.createClass({
   },
 
   render: function() {
-    if (this.props.searchResult.place_id) {
       return (
         <div className="one-search-result clearfix">
           <img src={this.state.place.profilePicUrl} className="index-img"></img>
@@ -115,24 +100,5 @@ var SearchResultItem = React.createClass({
           <p id="address">{this.state.place.formatted_address}</p>
         </div>
       );
-    } else {
-      console.log("render!");
-      this.determineRatingInfo();
-      return (
-          <div className="one-search-result clearfix">
-            <img src={this.props.searchResult.photo} className="index-img"></img>
-            <div className="info">
-              <h3 onClick={this.showPlacePage} className="place-name">
-                {parseInt(this.props.index) + 1}. {this.props.searchResult.name}
-              </h3>
-              <input ref="ratingBox" name="rating" className="rating"></input>
-              <span className="num-reviews">{this.num_reviews} reviews</span>
-            </div>
-            <p>{this.props.searchResult.address}</p>
-          </div>
-        );
     }
-
-  }
-
 });

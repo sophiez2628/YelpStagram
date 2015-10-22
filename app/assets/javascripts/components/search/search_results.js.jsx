@@ -1,6 +1,6 @@
 var SearchResults = React.createClass({
   getInitialState: function() {
-    return { searchResults: SearchResultsStore.all() };
+    return { searchResults: SearchResultsStore.all(), searchResultItems: [] };
   },
 
   componentDidMount: function() {
@@ -8,19 +8,40 @@ var SearchResults = React.createClass({
   },
 
   onSearchResultsChange: function() {
-    this.setState({ searchResults: SearchResultsStore.all() });
+    this.setState({ searchResults: SearchResultsStore.all() }, function () {
+      var i = 5;
+      var j = this.state.searchResults.length;
+      var searchResultItems = this.state.searchResults.slice(0, 5).map(function(item, k) {
+        return <SearchResultItem key={item.place_id} index={k} searchResult={item} />;
+      });
+      var searchResultAdder = window.setInterval(
+        function() {
+          if (i === j) {
+            window.clearInterval(searchResultAdder);
+          } else {
+            var searchResult = this.state.searchResults[i];
+            searchResultItems.push(<SearchResultItem
+                                     key={searchResult.place_id}
+                                     index={i}
+                                     searchResult={searchResult}
+                                   />
+                               );
+            i++;
+            this.setState({ searchResultItems: searchResultItems });
+          }
+
+        }.bind(this), 400
+      );
+    }.bind(this));
   },
 
   render: function() {
-    console.log("search results render!")
     if (this.state.searchResults.length !== 0) {
       return (
         <div className="search-page">
           <ul className="search-results">
             {
-              this.state.searchResults.map(function(searchResult, index) {
-                return (<SearchResultItem key={searchResult.id} index={index} searchResult={searchResult} />);
-              })
+              this.state.searchResultItems
             }
             </ul>
         </div>

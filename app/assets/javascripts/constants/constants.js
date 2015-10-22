@@ -15,3 +15,7 @@ PhotosConstants = {
 PlaceConstants = {
   PLACE_RECEIVED: "PLACE_RECEIVED"
 };
+
+QueryConstants = {
+  QUERY_RECEIVED: "QUERY_RECEIVED"
+};
