@@ -7,7 +7,7 @@ $(document).ready(function() {
    var App = React.createClass({
      render: function(){
        return (
-           <div>
+           <div id="second-container">
              <Navbar />
              {this.props.children}
            </div>

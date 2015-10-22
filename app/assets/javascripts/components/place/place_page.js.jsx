@@ -2,12 +2,12 @@ var PlacePage = React.createClass({
   mixins: [ReactRouter.History],
 
   getInitialState: function() {
-    return { place: {name: ""}, reviews: [] };
+    return { place: {name: "", reviews: []}, reviews: [] };
   },
 
   componentDidMount: function() {
     PlaceStore.addChangeListener(this.onPlaceChange);
-
+    ReviewsStore.addChangeListener(this.onReviewsChange);
     if (this.props.params.placeId.length > 10) {
       this.map = window.map;
       var request = {
@@ -20,14 +20,13 @@ var PlacePage = React.createClass({
         if (!placeDetails.photos) {
           placeDetails.profilePicUrl = "http://www.arinow.org/wp-content/uploads/2015/03/placeholder.jpg";
         }
-        ApiActions.receivePlace(placeDetails);
+          ApiActions.receivePlace(placeDetails);
       });
+          ApiUtil.fetchReviews({place_id: this.props.params.placeId, google: true});
     } else {
-      ReviewsStore.addChangeListener(this.onReviewsChange);
       ApiUtil.fetchPlace({place_id: this.props.params.placeId});
-      ApiUtil.fetchReviews({place_id: this.props.params.placeId});
+      ApiUtil.fetchReviews({place_id: this.props.params.placeId, google: false});
     }
-
   },
 
   onPlaceChange: function() {
@@ -80,7 +79,11 @@ var PlacePage = React.createClass({
   },
 
   render: function() {
+    console.log(this.state.place.name);
+    console.log("place page");
+    var reviews = this.state.place.reviews.concat(this.state.reviews);
     if (this.props.params.placeId.length > 10) {
+      console.log("correct");
       return (
         <div className="place-page">
           <main className="place-header clearfix">
@@ -105,10 +108,11 @@ var PlacePage = React.createClass({
             <PhotoIndex place={this.state.place} photos={this.state.place.photos} profilePic={this.state.place.profilePicUrl}/>
           </div>
           <h3>reviews</h3>
-          <ReviewIndex place={this.state.place} reviews={this.state.place.reviews} />
+          <ReviewIndex place={this.state.place} reviews={reviews} />
         </div>
       );
     } else {
+      console.log("not correct");
       return (
         <div className="place-page">
           <main className="place-header clearfix">

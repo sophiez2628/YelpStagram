@@ -22,7 +22,19 @@ class Review < ActiveRecord::Base
               foreign_key: :author_id,
               class_name: "User"
 
-  def self.fetch(place_id)
-    Review.where('place_id = ?', place_id)
+  def self.fetch(place_id, google)
+    if google == 'true'
+      puts "string"
+      where_params = <<-SQL
+        reviews.google_place_id = :place_id
+      SQL
+    else
+      puts "not string"
+      where_params = <<-SQL
+        reviews.place_id = :place_id
+      SQL
+    end
+
+    reviews = Review.where(where_params, place_id: place_id)
   end
 end

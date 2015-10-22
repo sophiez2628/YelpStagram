@@ -38,29 +38,31 @@ var SearchResultItem = React.createClass({
 
       var service = new google.maps.places.PlacesService(this.map);
       window.setTimeout(service.getDetails(request, function(placeDetails, status) {
-        var $rate = $(React.findDOMNode(this.refs.ratingBox));
-        $rate.rating({showClear: false, showCaption: false, readonly: true, size: 'xs'});
-        if (placeDetails.rating) {
-          $rate.rating('update', placeDetails.rating);
-        } else if (!placeDetails.rating && placeDetails.reviews ) {
-          var ave = this.calculateReviewAverage(placeDetails.reviews);
-          $rate.rating('update', ave);
-        } else {
-          $rate.rating('update', 0);
-        }
+        if (placeDetails !== null) {
+          var $rate = $(React.findDOMNode(this.refs.ratingBox));
+          $rate.rating({showClear: false, showCaption: false, readonly: true, size: 'xs'});
+          if (placeDetails.rating) {
+            $rate.rating('update', placeDetails.rating);
+          } else if (!placeDetails.rating && placeDetails.reviews ) {
+            var ave = this.calculateReviewAverage(placeDetails.reviews);
+            $rate.rating('update', ave);
+          } else {
+            $rate.rating('update', 0);
+          }
 
-        if (!placeDetails.user_ratings_total) {
-          placeDetails.user_ratings_total = 0;
-        }
+          if (!placeDetails.user_ratings_total) {
+            placeDetails.user_ratings_total = 0;
+          }
 
-        if (placeDetails.photos) {
-          placeDetails.profilePicUrl = placeDetails.photos[0].getUrl({'maxWidth': 200, 'maxHeight': 200});
-        } else {
-          placeDetails.profilePicUrl = "http://www.arinow.org/wp-content/uploads/2015/03/placeholder.jpg";
-        }
+          if (placeDetails.photos) {
+            placeDetails.profilePicUrl = placeDetails.photos[0].getUrl({'maxWidth': 200, 'maxHeight': 200});
+          } else {
+            placeDetails.profilePicUrl = "http://www.arinow.org/wp-content/uploads/2015/03/placeholder.jpg";
+          }
 
-        this.addMarker(placeDetails, this.props.index);
-        this.setState({place: placeDetails});
+          this.addMarker(placeDetails, this.props.index);
+          this.setState({place: placeDetails});
+        }
 
       }.bind(this)), 10000);
     } else {
@@ -110,7 +112,7 @@ var SearchResultItem = React.createClass({
             <input ref="ratingBox" name="rating" className="rating"></input>
             <span className="num-reviews">{this.state.place.user_ratings_total} reviews</span>
           </div>
-          <p>{this.state.place.formatted_address}</p>
+          <p id="address">{this.state.place.formatted_address}</p>
         </div>
       );
     } else {

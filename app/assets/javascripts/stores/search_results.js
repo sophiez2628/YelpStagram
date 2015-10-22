@@ -3,12 +3,14 @@
   var _myDatabaseResults = [];
   var _googleResults = [];
   var resetMyDatabaseResults = function(results){
+    console.log("my database");
     _myDatabaseResults = results;
     SearchResultsStore.onChange();
   };
 
   var resetGoogleResults = function(results) {
-    _googleResults = results.slice(0,8);
+    console.log("google database")
+    _googleResults = results.slice(0,10);
     SearchResultsStore.onChange();
   };
 

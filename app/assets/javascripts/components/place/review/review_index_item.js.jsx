@@ -6,8 +6,10 @@ var ReviewIndexItem = React.createClass({
   },
 
   render: function() {
-    //only rendering once?
-    if (this.props.review.text) {
+    //only rendering once
+    console.log("hi");
+    if (this.props.review.author_name) {
+      console.log(this.props.review.author_name);
       return (
           <div>
             <span>{this.props.review.author_name}</span>
@@ -18,6 +20,7 @@ var ReviewIndexItem = React.createClass({
           </div>
       );
     } else {
+      console.log(this.props.review.author_id);
       return (
           <div>
             <span>{this.props.review.user.first_name} {this.props.review.user.last_name}</span>

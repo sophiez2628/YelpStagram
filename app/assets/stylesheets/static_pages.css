@@ -131,3 +131,21 @@ input[type="submit"] {
   color: gray;
   border: none;
 }
+
+div.container-fluid {
+  background-color: #af0606;
+}
+
+#bar {
+  width: 300px;
+}
+
+
+#auto-search {
+  width: 300px;
+  margin-left: 10px;
+}
+
+#search-button {
+  margin-left: 10px;
+}

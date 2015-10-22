@@ -7,11 +7,11 @@ class Api::ReviewsController < ApplicationController
   end
 
   def index
-    @reviews = Review.fetch(params[:place_id].to_i).includes(:user)
+    @reviews = Review.fetch(params[:place_id],params[:google]).includes(:user)
   end
 
   private
   def review_params
-    params.permit(:rating, :body, :author_id, :place_id)
+    params.permit(:rating, :body, :author_id, :place_id, :google_place_id)
   end
 end

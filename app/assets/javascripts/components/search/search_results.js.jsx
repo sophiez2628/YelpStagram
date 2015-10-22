@@ -4,8 +4,6 @@ var SearchResults = React.createClass({
   },
 
   componentDidMount: function() {
-    ApiUtil.fetchSearchResults({find: this.props.location.query.find,
-                                near: this.props.location.query.near});
     window.SearchResultsStore.addChangeListener(this.onSearchResultsChange);
   },
 
@@ -14,17 +12,24 @@ var SearchResults = React.createClass({
   },
 
   render: function() {
-    return (
-      <div className="search-page">
-        <ul className="search-results">
-          {
-            this.state.searchResults.map(function(searchResult, index) {
-              return (<SearchResultItem key={searchResult.id} index={index} searchResult={searchResult} />);
-            })
-          }
-          </ul>
-      </div>
-    );
+    console.log("search results render!")
+    if (this.state.searchResults.length !== 0) {
+      return (
+        <div className="search-page">
+          <ul className="search-results">
+            {
+              this.state.searchResults.map(function(searchResult, index) {
+                return (<SearchResultItem key={searchResult.id} index={index} searchResult={searchResult} />);
+              })
+            }
+            </ul>
+        </div>
+      );
+    } else {
+      return (
+        <p>No Results Found</p>
+      );
+    }
   }
 
 });
