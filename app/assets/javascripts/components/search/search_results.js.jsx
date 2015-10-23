@@ -1,4 +1,5 @@
 var SearchResults = React.createClass({
+  mixins: [ReactRouter.History],
   getInitialState: function() {
     return { searchResults: SearchResultsStore.all(), searchResultItems: [] };
   },
@@ -12,8 +13,8 @@ var SearchResults = React.createClass({
       var i = 5;
       var j = this.state.searchResults.length;
       var searchResultItems = this.state.searchResults.slice(0, 5).map(function(item, k) {
-        return <SearchResultItem key={item.place_id} index={k} searchResult={item} />;
-      });
+        return <SearchResultItem key={item.place_id} index={k} searchResult={item} history={this.history}/>;
+      }, this);
       var searchResultAdder = window.setInterval(
         function() {
           if (j < i || i === j) {
@@ -24,6 +25,7 @@ var SearchResults = React.createClass({
                                      key={searchResult.place_id}
                                      index={i}
                                      searchResult={searchResult}
+                                     history={this.history}
                                    />
                                );
             i++;

@@ -2,7 +2,7 @@ var PlacePage = React.createClass({
   mixins: [ReactRouter.History],
 
   getInitialState: function() {
-    return { place: {name: "", reviews: []}, reviews: [] };
+    return { place: undefined, reviews: [] };
   },
 
   componentDidMount: function() {
@@ -79,11 +79,8 @@ var PlacePage = React.createClass({
   },
 
   render: function() {
-    console.log(this.state.place.name);
-    console.log("place page");
-    var reviews = this.state.place.reviews.concat(this.state.reviews);
-    if (this.props.params.placeId.length > 10) {
-      console.log("correct");
+    if (this.state.place) {
+      var reviews = this.state.place.reviews.concat(this.state.reviews);
       return (
         <div className="place-page">
           <main className="place-header clearfix">
@@ -112,34 +109,9 @@ var PlacePage = React.createClass({
         </div>
       );
     } else {
-      console.log("not correct");
-      return (
-        <div className="place-page">
-          <main className="place-header clearfix">
-            <div className="place-name">
-              <h1>{this.state.place.name}</h1>
-            </div>
-
-            <div className="place-buttons">
-              <button onClick={this.handleWriteReview}>Write a Review</button>
-              <button onClick={this.handleUploadPhoto}>Add a Photo</button>
-            </div>
-
-          </main>
-
-          <div className="rating-info">
-            <input ref="ratingBox" name="rating" className="rating"></input>
-            <span className="num-reviews">{this.state.reviews.length} reviews</span>
-          </div>
-
-          <div className="map-photos clearfix">
-            <PlaceLoc place={this.state.place} />
-            <PhotoIndex place={this.state.place} />
-          </div>
-          <h3>reviews</h3>
-          <ReviewIndex place={this.state.place} reviews={this.state.reviews} />
-        </div>
-      );
+        return (
+          <div class="loader">Loading...</div>
+        );
+      }
     }
-  }
 });

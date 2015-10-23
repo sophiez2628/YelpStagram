@@ -2,12 +2,13 @@ var SearchResultItem = React.createClass({
   getInitialState: function() {
     return { place: { } };
   },
-  mixins: [ReactRouter.History],
 
 
   showPlacePage: function() {
     var placeURL = "/searchResults/" + this.state.place.place_id;
-    this.history.pushState(null, placeURL);
+    this.props.history.pushState(null, placeURL);
+    // this.history.pushState(null, placeURL);
+
   },
 
   determineRatingInfo: function() {

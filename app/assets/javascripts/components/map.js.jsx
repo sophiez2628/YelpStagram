@@ -1,4 +1,5 @@
 var Map = React.createClass({
+  mixins: [ReactRouter.History],
   getInitialState: function() {
     return {query: undefined };
   },

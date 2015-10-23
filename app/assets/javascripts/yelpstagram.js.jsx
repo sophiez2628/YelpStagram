@@ -15,9 +15,9 @@ $(document).ready(function() {
    });
    var routes = (
        <Route path="/" component={App}>
-         <IndexRoute path="/searchResults" component={{nav: Navbar, search: SearchResults, map: Map}} />
-         <Route path="/searchResults/:placeId" component={PlacePage} />
-         <Route path="/writeReview/:placeId" component={WriteReview} />
+         <IndexRoute components={{nav: Navbar, search: SearchResults, map: Map}} />
+         <Route path="/searchResults/:placeId" components={{nav: Navbar, place: PlacePage}} />
+         <Route path="/writeReview/:placeId" components={{nav: Navbar, review: WriteReview}} />
        </Route>
    );
 
