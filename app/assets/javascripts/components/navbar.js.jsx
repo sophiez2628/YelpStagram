@@ -20,6 +20,9 @@ componentDidMount: function() {
 //when user submits form
 handleSubmit: function(e) {
   e.preventDefault();
+  if (this.props.params.placeId) {
+    this.history.pushState(null, '/');
+  }
   //empty string if no user input
   var find = e.currentTarget.find.value;
   var place = this.autocomplete.getPlace();

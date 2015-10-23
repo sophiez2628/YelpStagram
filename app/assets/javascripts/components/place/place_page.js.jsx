@@ -10,6 +10,8 @@ var PlacePage = React.createClass({
     ReviewsStore.addChangeListener(this.onReviewsChange);
     PhotosStore.addChangeListener(this.onPhotosChange);
 
+    //what happens when i go to a new route? 
+    //how to do this only after the map component has mounted?
     this.map = window.map;
     var request = {
       placeId: this.props.params.placeId
