@@ -1,11 +1,25 @@
 ApiActions = {
+  receiveMouseOverPlace: function(place) {
+    AppDispatcher.dispatch({
+      actionType: MapConstants.MOUSE_OVER_RECEIVED,
+      place: place
+    });
+  },
+
+  mapMounted: function(boolean) {
+    AppDispatcher.dispatch({
+      actionType: MapConstants.MAP_MOUNTED,
+      boolean: boolean
+    });
+  },
+
   onMouseOver: function(place) {
     AppDispatcher.dispatch({
       actionType: QueryConstants.QUERY_RECEIVED,
       query: query
     });
   },
-  
+
   receiveQuery: function(query){
     AppDispatcher.dispatch({
       actionType: QueryConstants.QUERY_RECEIVED,

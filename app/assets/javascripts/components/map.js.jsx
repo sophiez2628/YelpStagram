@@ -38,6 +38,7 @@ var Map = React.createClass({
   },
 
   componentDidMount: function(){
+    ApiActions.mapMounted(true);
     QueryStore.addChangeListener(this.onQueryChange);
     var map = React.findDOMNode(this.refs.map);
     var mapOptions;
@@ -53,6 +54,7 @@ var Map = React.createClass({
       };
       // SearchResultsStore.addChangeListener(this.onSearchResultsChange);
       this.map = new google.maps.Map(map, mapOptions);
+      console.log('map mounting');
       window.map = new google.maps.Map(map, mapOptions);
       this.fetchFromGoogleAPI();
     }
@@ -90,6 +92,7 @@ var Map = React.createClass({
       marker.setMap(this.map);
     }
   },
+
 
   render: function() {
     var name;

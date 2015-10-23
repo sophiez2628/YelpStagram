@@ -90,7 +90,7 @@ var SearchResultItem = React.createClass({
   },
 
   onMouseOver: function() {
-    ApiActions.receiveMouseOVerPlace(this.state.place);
+    ApiActions.receiveMouseOverPlace(this.state.place);
   },
 
   render: function() {

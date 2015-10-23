@@ -79,7 +79,7 @@ render: function() {
           <div className="navbar-header">
 
 
-                <p id="logo-container"><img src="images/yelp.png"></img></p>
+                <p id="logo-container"><img src="images/logo.png"></img></p>
             <form className="navbar-form navbar-left" id="navbar" role="search" onSubmit={this.handleSubmit}>
 
 
