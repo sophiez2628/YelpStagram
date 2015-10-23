@@ -57,6 +57,7 @@ var Map = React.createClass({
       console.log('map mounting');
       window.map = new google.maps.Map(map, mapOptions);
       this.fetchFromGoogleAPI();
+      this.props.mount && this.props.mount();
     }
   },
 
@@ -71,7 +72,7 @@ var Map = React.createClass({
     if (!prop.place) {
       this.fetchFromGoogleAPI();
     } else {
-      var map = React.findDOMNode(this.refs.map);
+      // var map = React.findDOMNode(this.refs.map);
       var lat;
       var lng;
       if (prop.place.place_id) {
@@ -85,7 +86,7 @@ var Map = React.createClass({
         center: {lat: lat, lng: lng},
         zoom: 13
       };
-      this.map = new google.maps.Map(map, mapOptions);
+      this.map.setCenter({lat: lat, lng: lng});
       var marker = new google.maps.Marker({
         position: {lat: lat, lng: lng }
       });

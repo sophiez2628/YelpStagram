@@ -10,9 +10,15 @@ var PlacePage = React.createClass({
     ReviewsStore.addChangeListener(this.onReviewsChange);
     PhotosStore.addChangeListener(this.onPhotosChange);
 
-    //what happens when i
+    //what happens when i go to a new route?
     //how to do this only after the map component has mounted?
-    console.log('place calling map');
+
+     ApiUtil.fetchReviews({place_id: this.props.params.placeId, google: true});
+     ApiUtil.fetchPhotos({place_id: this.props.params.placeId});
+
+  },
+
+  onMapChange: function() {
     this.map = window.map;
 
     var request = {
@@ -27,9 +33,6 @@ var PlacePage = React.createClass({
       }
         ApiActions.receivePlace(placeDetails);
     });
-
-     ApiUtil.fetchReviews({place_id: this.props.params.placeId, google: true});
-     ApiUtil.fetchPhotos({place_id: this.props.params.placeId});
 
   },
 
@@ -128,7 +131,7 @@ var PlacePage = React.createClass({
           </div>
 
           <div className="map-photos clearfix">
-            <PlaceLoc place={this.state.place} />
+            <PlaceLoc place={this.state.place} onMapMount={this.onMapChange} />
             <PhotoIndex place={this.state.place} photos={photos} profilePic={this.state.place.profilePicUrl}/>
           </div>
           <h3>reviews</h3>
@@ -137,8 +140,11 @@ var PlacePage = React.createClass({
       );
     } else {
         return (
-          <div className="loader">Loading...</div>
-        );
+          <div>
+            <PlaceLoc place={this.state.place} mount={this.onMapChange} />
+            <div className="loader">Loading...</div>
+        </div>
+      );
       }
     }
 });
