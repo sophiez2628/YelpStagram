@@ -1,4 +1,11 @@
 ApiActions = {
+  onMouseOver: function(place) {
+    AppDispatcher.dispatch({
+      actionType: QueryConstants.QUERY_RECEIVED,
+      query: query
+    });
+  },
+  
   receiveQuery: function(query){
     AppDispatcher.dispatch({
       actionType: QueryConstants.QUERY_RECEIVED,

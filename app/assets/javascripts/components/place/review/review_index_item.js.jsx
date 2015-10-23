@@ -7,12 +7,12 @@ var ReviewIndexItem = React.createClass({
 
   render: function() {
     //only rendering once
-    console.log("hi");
+    var timestamp = (new Date(this.props.review.time * 1000)).toString();
     if (this.props.review.author_name) {
-      console.log(this.props.review.author_name);
       return (
           <div>
             <span>{this.props.review.author_name}</span>
+              <div>{timestamp}</div>
               <div className="rating-info">
                 <input ref="ratingBox" name="rating" className="rating"></input>
               </div>
@@ -20,7 +20,6 @@ var ReviewIndexItem = React.createClass({
           </div>
       );
     } else {
-      console.log(this.props.review.author_id);
       return (
           <div>
             <span>{this.props.review.user.first_name} {this.props.review.user.last_name}</span>

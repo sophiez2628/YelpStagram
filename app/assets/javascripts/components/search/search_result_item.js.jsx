@@ -89,10 +89,14 @@ var SearchResultItem = React.createClass({
     this.marker = null;
   },
 
+  onMouseOver: function() {
+    ApiActions.receiveMouseOVerPlace(this.state.place);
+  },
+
   render: function() {
       return (
         <div className="one-search-result clearfix">
-          <img src={this.state.place.profilePicUrl} className="index-img"></img>
+          <img onMouseOver={this.onMouseOver} src={this.state.place.profilePicUrl} className="index-img"></img>
           <div className="info">
             <h3 onClick={this.showPlacePage} className="place-name">
               {parseInt(this.props.index) + 1}. {this.state.place.name}

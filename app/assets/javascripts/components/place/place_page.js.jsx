@@ -67,8 +67,12 @@ var PlacePage = React.createClass({
 
   handleWriteReview: function(e) {
     e.preventDefault();
-    var placeURL = "/writeReview/" + this.props.params.placeId;
-    this.history.pushState(null, placeURL);
+    if (window.CURRENT_USER_ID) {
+      var placeURL = "/writeReview/" + this.props.params.placeId;
+      this.history.pushState(null, placeURL);
+    } else {
+      window.location = "/session/new";
+    }
   },
 
   handleUploadPhoto: function(e) {
@@ -80,7 +84,7 @@ var PlacePage = React.createClass({
 
   render: function() {
     if (this.state.place) {
-      var reviews = this.state.place.reviews.concat(this.state.reviews);
+      var reviews = (this.state.reviews).concat(this.state.place.reviews);
       return (
         <div className="place-page">
           <main className="place-header clearfix">
@@ -110,7 +114,7 @@ var PlacePage = React.createClass({
       );
     } else {
         return (
-          <div class="loader">Loading...</div>
+          <div className="loader">Loading...</div>
         );
       }
     }

@@ -30,11 +30,11 @@ var WriteReview = React.createClass({
 
   render: function() {
     return (
-      <div>
+      <div id="review-box">
         <h3>Write a Review</h3>
         <form onSubmit={this.handleSubmitReview}>
           <input ref="ratingBox" name="rating" className="rating"></input>
-          <textarea type="text" name="review"></textarea>
+          <textarea type="text" name="review" rows="8" cols="50"></textarea>
           <input type="submit" value="Post Review"></input>
         </form>
       </div>

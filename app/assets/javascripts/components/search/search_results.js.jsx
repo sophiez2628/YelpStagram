@@ -50,7 +50,7 @@ var SearchResults = React.createClass({
       );
     } else {
       return (
-        <p>No Results Found</p>
+        <div className="loader">Loading...</div>
       );
     }
   }
