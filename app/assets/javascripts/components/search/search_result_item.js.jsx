@@ -89,9 +89,7 @@ var SearchResultItem = React.createClass({
     this.marker = null;
   },
 
-  onMouseOver: function() {
-    ApiActions.receiveMouseOverPlace(this.state.place);
-  },
+
 
   render: function() {
       return (

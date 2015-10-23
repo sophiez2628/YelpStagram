@@ -38,7 +38,6 @@ var Map = React.createClass({
   },
 
   componentDidMount: function(){
-    ApiActions.mapMounted(true);
     QueryStore.addChangeListener(this.onQueryChange);
     var map = React.findDOMNode(this.refs.map);
     var mapOptions;

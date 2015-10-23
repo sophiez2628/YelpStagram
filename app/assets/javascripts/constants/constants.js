@@ -19,8 +19,3 @@ PlaceConstants = {
 QueryConstants = {
   QUERY_RECEIVED: "QUERY_RECEIVED"
 };
-
-MapConstants = {
-  MAP_MOUNTED: "MAP_MOUNTED",
-  MOUSE_OVER_RECEIVED: "MOUSE_OVER_RECEIVED"
-};
