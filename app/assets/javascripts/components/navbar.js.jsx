@@ -71,7 +71,6 @@ signOut: function() {
 },
 
 render: function() {
-  console.log("nav render");
   var list = this.navContent();
   return (
       <nav className="navbar navbar-default">

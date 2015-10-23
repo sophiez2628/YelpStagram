@@ -19,7 +19,6 @@
     },
 
     one: function() {
-      console.log(_photo.id);
       return _photo;
     },
 

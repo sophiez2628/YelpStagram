@@ -32,6 +32,7 @@ var PlacePage = React.createClass({
         placeDetails.profilePicUrl = "http://www.arinow.org/wp-content/uploads/2015/03/placeholder.jpg";
       }
         ApiActions.receivePlace(placeDetails);
+        //goes to the place store
     });
 
   },
@@ -142,6 +143,9 @@ var PlacePage = React.createClass({
         return (
           <div>
             <PlaceLoc place={this.state.place} mount={this.onMapChange} />
+              <div className="rating-info">
+                <input ref="ratingBox" name="rating" className="rating"></input>
+              </div>
             <div className="loader">Loading...</div>
         </div>
       );

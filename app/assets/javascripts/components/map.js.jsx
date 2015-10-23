@@ -4,12 +4,8 @@ var Map = React.createClass({
     return {query: undefined };
   },
 
-  checkForMarkers: function() {
-
-  },
-
   fetchFromGoogleAPI: function(query) {
-    this.checkForMarkers();
+    // this.checkForMarkers();
     //grabbing user input from the query string
 
     var find, near, lat, lng;
@@ -53,7 +49,6 @@ var Map = React.createClass({
       };
       // SearchResultsStore.addChangeListener(this.onSearchResultsChange);
       this.map = new google.maps.Map(map, mapOptions);
-      console.log('map mounting');
       window.map = new google.maps.Map(map, mapOptions);
       this.fetchFromGoogleAPI();
       this.props.mount && this.props.mount();
