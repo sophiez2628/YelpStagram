@@ -1,6 +1,6 @@
 .one-place {
   position: absolute;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .place-page {
@@ -37,4 +37,12 @@
 
 .place-buttons {
   float: right;
+}
+
+#place-photo {
+  height: 210px;
+}
+
+#place-photo img {
+  height: 100%;
 }

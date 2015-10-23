@@ -15,7 +15,6 @@ var PhotoIndex = React.createClass({
     if (props.photos) {
       window.setTimeout(ApiActions.receivePhotos.bind(this, props.photos), 1000);
     } else if (!props.photos && props.place.place_id) {
-      console.log("huh");
       this.setState({photo: props.profilePic});
     }
   },
@@ -43,7 +42,7 @@ var PhotoIndex = React.createClass({
             } else {
               src = photo.url;
             }
-            return <div key={photo.id}><img src={src}></img></div>;
+            return <div id="place-photo" key={photo.id}><img src={src}></img></div>;
           })
         }
       </Slider>

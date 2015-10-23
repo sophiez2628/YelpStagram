@@ -1,5 +1,5 @@
 button.slick-prev, button.slick-next {
-  background: blue;
+  background: red;
 }
 
 button.slick-prev:hover, button.slick-next:hover {
@@ -9,7 +9,7 @@ button.slick-prev:hover, button.slick-next:hover {
 
 #place-photos {
   width: 630px;
-  margin: 0px;
+  margin-top: 55px;
   float: right;
 }
 
@@ -18,4 +18,9 @@ button.slick-prev:hover, button.slick-next:hover {
 img {
   width: 200px;
   margin: 0px;
+}
+
+.index-img:hover {
+  transform: scale(1.25);
+  border: 1px solid black;
 }
