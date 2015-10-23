@@ -39,6 +39,20 @@ ApiUtil = {
     });
   },
 
+  createPhoto: function(params){
+    //make an api call using AJAX in here
+    $.ajax({
+      url: '/api/photos',
+      type: 'POST',
+      data: params,
+      dataType: 'json',
+      success: function(photo) {
+        //go to review site
+        ApiActions.receivePhoto(photo);
+      }
+    });
+  },
+
   fetchPhotos: function(place_id){
     //make an api call using AJAX in here
     $.ajax({

@@ -2,31 +2,35 @@ var PlacePage = React.createClass({
   mixins: [ReactRouter.History],
 
   getInitialState: function() {
-    return { place: undefined, reviews: undefined };
+    return { place: undefined, reviews: undefined, photos: undefined };
   },
 
   componentDidMount: function() {
     PlaceStore.addChangeListener(this.onPlaceChange);
     ReviewsStore.addChangeListener(this.onReviewsChange);
-    if (this.props.params.placeId.length > 10) {
-      this.map = window.map;
-      var request = {
-        placeId: this.props.params.placeId
-      };
+    PhotosStore.addChangeListener(this.onPhotosChange);
 
-      var service = new google.maps.places.PlacesService(this.map);
-      service.getDetails(request, function(placeDetails, status) {
-        //obtain details of the place
-        if (!placeDetails.photos) {
-          placeDetails.profilePicUrl = "http://www.arinow.org/wp-content/uploads/2015/03/placeholder.jpg";
-        }
-          ApiActions.receivePlace(placeDetails);
-      });
-          ApiUtil.fetchReviews({place_id: this.props.params.placeId, google: true});
-    } else {
-      ApiUtil.fetchPlace({place_id: this.props.params.placeId});
-      ApiUtil.fetchReviews({place_id: this.props.params.placeId, google: false});
-    }
+    this.map = window.map;
+    var request = {
+      placeId: this.props.params.placeId
+    };
+
+    var service = new google.maps.places.PlacesService(this.map);
+    service.getDetails(request, function(placeDetails, status) {
+      //obtain details of the place
+      if (!placeDetails.photos) {
+        placeDetails.profilePicUrl = "http://www.arinow.org/wp-content/uploads/2015/03/placeholder.jpg";
+      }
+        ApiActions.receivePlace(placeDetails);
+    });
+
+     ApiUtil.fetchReviews({place_id: this.props.params.placeId, google: true});
+     ApiUtil.fetchPhotos({place_id: this.props.params.placeId});
+
+  },
+
+  onPhotosChange: function() {
+    this.setState({ photos: PhotosStore.all() });
   },
 
   onPlaceChange: function() {
@@ -76,15 +80,30 @@ var PlacePage = React.createClass({
   },
 
   handleUploadPhoto: function(e) {
-    cloudinary.openUploadWidget({ cloud_name: 'dqrqkkhtr', upload_preset: 'pcdi2psu'},
-      function(error, result) {
-        console.log(result);
-       });
+    e.preventDefault();
+
+    if (window.CURRENT_USER_ID) {
+      cloudinary.openUploadWidget({ cloud_name: 'dqrqkkhtr', upload_preset: 'pcdi2psu'},
+        function(error, photos) {
+          photos.map(function(photo) {
+            var params = {
+              user_id: window.CURRENT_USER_ID,
+              place_id: 0,
+              google_place_id: this.props.params.placeId,
+              url: photo.url
+            };
+            ApiUtil.createPhoto(params);
+          }.bind(this));
+        }.bind(this));
+    } else {
+       window.location = "/session/new";
+    }
   },
 
   render: function() {
-    if (this.state.place && this.state.reviews) {
+    if (this.state.place && this.state.reviews && this.state.photos) {
       var reviews = (this.state.reviews).concat(this.state.place.reviews);
+      var photos = (this.state.photos).concat(this.state.place.photos);
       return (
         <div className="place-page">
           <main className="place-header clearfix">
@@ -106,7 +125,7 @@ var PlacePage = React.createClass({
 
           <div className="map-photos clearfix">
             <PlaceLoc place={this.state.place} />
-            <PhotoIndex place={this.state.place} photos={this.state.place.photos} profilePic={this.state.place.profilePicUrl}/>
+            <PhotoIndex place={this.state.place} photos={photos} profilePic={this.state.place.profilePicUrl}/>
           </div>
           <h3>reviews</h3>
           <ReviewIndex place={this.state.place} reviews={reviews} />

@@ -12,9 +12,9 @@
 
 class Photo < ActiveRecord::Base
   belongs_to :user
-  
-  def self.find(place_id)
-    Photo.where('place_id = ?', place_id)
+
+  def self.find(google_place_id)
+    Photo.where('google_place_id = ?', google_place_id)
   end
 
   def self.find_one(place_id)
