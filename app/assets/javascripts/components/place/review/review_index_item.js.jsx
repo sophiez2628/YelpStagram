@@ -23,6 +23,7 @@ var ReviewIndexItem = React.createClass({
       return (
           <div>
             <span>{this.props.review.user.first_name} {this.props.review.user.last_name}</span>
+              <div>{this.props.review.created_at}</div>
               <div className="rating-info">
                 <input ref="ratingBox" name="rating" className="rating"></input>
               </div>

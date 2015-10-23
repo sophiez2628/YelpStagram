@@ -5,7 +5,6 @@ var ReviewIndex = React.createClass({
 
     //it is rendering twice, but for the first time, the reviews array is empty
     //so none of the ReviewIndexItem components are loaded
-    console.log("review index");
     if (!this.props.reviews) {
       return (<div>Loading</div>);
     } else {

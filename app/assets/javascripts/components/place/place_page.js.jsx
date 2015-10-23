@@ -2,7 +2,7 @@ var PlacePage = React.createClass({
   mixins: [ReactRouter.History],
 
   getInitialState: function() {
-    return { place: undefined, reviews: [] };
+    return { place: undefined, reviews: undefined };
   },
 
   componentDidMount: function() {
@@ -83,7 +83,7 @@ var PlacePage = React.createClass({
   },
 
   render: function() {
-    if (this.state.place) {
+    if (this.state.place && this.state.reviews) {
       var reviews = (this.state.reviews).concat(this.state.place.reviews);
       return (
         <div className="place-page">

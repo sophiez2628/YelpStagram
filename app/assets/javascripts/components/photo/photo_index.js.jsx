@@ -7,17 +7,17 @@ var PhotoIndex = React.createClass({
     PhotosStore.addChangeListener(this.onChange);
   },
 
-  componentWillReceiveProps: function(props) {
-    if (!props.place.place_id) {
-      ApiUtil.fetchPhotos({place_id: props.place.id});
-    }
-
-    if (props.photos) {
-      window.setTimeout(ApiActions.receivePhotos.bind(this, props.photos), 1000);
-    } else if (!props.photos && props.place.place_id) {
-      this.setState({photo: props.profilePic});
-    }
-  },
+  // componentWillReceiveProps: function(props) {
+  //   if (!props.place.place_id) {
+  //     ApiUtil.fetchPhotos({place_id: props.place.id});
+  //   }
+  //
+  //   if (props.photos) {
+  //     window.setTimeout(ApiActions.receivePhotos.bind(this, props.photos), 1000);
+  //   } else if (!props.photos && props.place.place_id) {
+  //     this.setState({photo: props.profilePic});
+  //   }
+  // },
 
   onChange: function() {
     this.setState({photos: PhotosStore.all()});
@@ -32,13 +32,15 @@ var PhotoIndex = React.createClass({
       slidesToScroll: 1
     };
 
+      debugger;
     return (
       <div id="place-photos">
         <Slider {...settings}>
         {
-          this.state.photos.map(function(photo) {
+          this.props.photos.map(function(photo) {
             if (photo.getUrl) {
               src = photo.getUrl({'maxWidth': 200, 'maxHeight': 200});
+              console.log(src);
             } else {
               src = photo.url;
             }
