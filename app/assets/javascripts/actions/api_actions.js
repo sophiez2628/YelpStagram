@@ -1,5 +1,10 @@
 ApiActions = {
-
+  receiveMouseOverPlace: function(place) {
+    AppDispatcher.dispatch({
+      actionType: MapConstants.PLACE_RECEIVED,
+      place: place 
+    });
+  },
 
   receiveQuery: function(query){
     AppDispatcher.dispatch({

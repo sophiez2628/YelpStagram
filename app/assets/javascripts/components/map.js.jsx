@@ -35,6 +35,7 @@ var Map = React.createClass({
 
   componentDidMount: function(){
     QueryStore.addChangeListener(this.onQueryChange);
+    MapStore.addChangeListener(this.onMouseOverChange);
     var map = React.findDOMNode(this.refs.map);
     var mapOptions;
     if (this.state.query) {
@@ -53,6 +54,15 @@ var Map = React.createClass({
       this.fetchFromGoogleAPI();
       this.props.mount && this.props.mount();
     }
+  },
+
+  onMouseOverChange: function() {
+    //marker is placed on window.map
+    var place = MapStore.all();
+    var lat = place.geometry.location.lat();
+    var lng = place.geometry.location.lng();
+    window.map.panTo({lat: lat, lng: lng});
+    window.map.setZoom(18);
   },
 
   onQueryChange: function() {

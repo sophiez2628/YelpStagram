@@ -19,3 +19,7 @@ PlaceConstants = {
 QueryConstants = {
   QUERY_RECEIVED: "QUERY_RECEIVED"
 };
+
+MapConstants = {
+  PLACE_RECEIVED: "PLACE_RECEIVED"
+};

@@ -89,6 +89,12 @@ var SearchResultItem = React.createClass({
     this.marker = null;
   },
 
+  onMouseOver: function() {
+    //send action to map store with place details
+    //map store should tell the map to change
+    ApiActions.receiveMouseOverPlace(this.state.place);
+  },
+
 
 
   render: function() {
