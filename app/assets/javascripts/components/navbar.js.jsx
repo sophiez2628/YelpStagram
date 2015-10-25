@@ -21,6 +21,7 @@ componentDidMount: function() {
 handleSubmit: function(e) {
   e.preventDefault();
   if (this.props.params.placeId) {
+    //needs to be fixed 
     this.history.pushState(null, '/');
   }
   //empty string if no user input

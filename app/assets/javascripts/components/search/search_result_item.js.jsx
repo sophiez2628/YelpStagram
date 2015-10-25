@@ -79,8 +79,9 @@ var SearchResultItem = React.createClass({
     });
     this.marker.setMap(this.map);
     //recenter map to the first marker
-    if (index === 0) {
+    if (this.props.index === 0) {
       this.map.setCenter({lat: lat, lng: lng});
+      this.map.setZoom(14);
     }
   },
 

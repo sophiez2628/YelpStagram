@@ -38,6 +38,7 @@ var SearchResults = React.createClass({
   },
 
   render: function() {
+    //include a sorry, no results found page
     if (this.state.searchResults.length !== 0) {
       return (
         <div className="search-page">
