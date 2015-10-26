@@ -13,12 +13,11 @@ and React.js. YelpStagram allows users to:
 
 - [ ] Create an account
 - [ ] Log in / Log out
-- [ ] User can create, read, edit, and delete reviews
-- [ ] User can upload pictures, share, and bookmark places
-- [ ] User can mark reviews as useful, funny, or cool
+- [ ] User can create and read reviews
+- [ ] User can upload pictures
 - [ ] User can search for places and see the location on Google Maps on the search result page
-- [ ] User can filter restaurants through price
 - [ ] User can also search for places using keywords  
+- [ ] User can also search for places using their current location by letting browser access current location and not providing any input to the 'near' input box 
 
 ## Design Docs
 * [View Wireframes][view]
