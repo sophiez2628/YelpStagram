@@ -39,7 +39,6 @@ var PhotoIndex = React.createClass({
           this.props.photos.map(function(photo) {
             if (photo.getUrl) {
               src = photo.getUrl({'maxWidth': 200, 'maxHeight': 200});
-              console.log(src);
             } else {
               src = photo.url;
             }
