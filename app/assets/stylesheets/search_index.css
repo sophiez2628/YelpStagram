@@ -51,3 +51,12 @@ nav.navbar-default {
 .place-name span {
   cursor: pointer;
 }
+
+#log-in {
+  color: white;
+}
+
+#log-in:hover {
+  color: black;
+  cursor: pointer;
+}

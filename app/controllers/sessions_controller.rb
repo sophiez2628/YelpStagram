@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def new
-    render :new 
+    render :new
   end
 
   def create
@@ -9,13 +9,17 @@ class SessionsController < ApplicationController
       params[:user][:password]
     )
 
-    if user
+    if user && user.id == 2
+      sign_in(user)
+      render json: user
+    elsif user
       sign_in(user)
       redirect_to root_url
     else
       flash.now[:errors] = ["Invalid username or password"]
       render :new
     end
+
   end
 
   def destroy

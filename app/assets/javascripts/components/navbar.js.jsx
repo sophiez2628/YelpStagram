@@ -2,6 +2,10 @@ var Navbar = React.createClass({
 
 mixins: [ReactRouter.History],
 
+getInitialState: function() {
+  return { demo: false }
+},
+
 componentDidMount: function() {
   //finds user's current location
   if (navigator.geolocation) {
@@ -21,7 +25,7 @@ componentDidMount: function() {
 handleSubmit: function(e) {
   e.preventDefault();
   if (this.props.params.placeId) {
-    //needs to be fixed 
+    //needs to be fixed
     this.history.pushState(null, '/');
   }
   //empty string if no user input
@@ -47,17 +51,31 @@ navContent: function () {
   if (window.CURRENT_USER_ID) {
     return (
       <ul className="nav navbar-nav pull-right">
-        <li onClick={this.signOut}><a>sign out</a></li>
+        <li onClick={this.signOut}><a id="log-in">sign out</a></li>
       </ul>
     );
   } else {
     return (
       <ul className="nav navbar-nav pull-right">
-        <li><a href="/session/new">sign in</a></li>
-        <li><a href="/users/new">sign up</a></li>
+        <li onClick={this.signDemoUserIn}><a href="#" id="log-in">demo user</a></li>
+        <li><a href="/session/new" id="log-in">sign in</a></li>
+        <li><a href="/users/new" id="log-in">sign up</a></li>
       </ul>
     );
   }
+},
+
+signDemoUserIn: function() {
+  $.ajax({
+    url: '/session',
+    type: 'POST',
+    dataType: 'json',
+    data: {user: {email: "demo_user@gmail.com", password: "demo_user"} },
+    success: function(user) {
+      window.location = "/";
+      this.forceUpdate();
+    }.bind(this)
+  });
 },
 
 signOut: function() {
@@ -97,17 +115,10 @@ render: function() {
 
             </form>
 
-            <button type="button" className="navbar-toggle collapsed"
-                                  data-toggle="collapse"
-                                  data-target="#collapse-menu"
-                                  aria-expanded="false">
-            <span className="icon-bar"></span>
-            <span className="icon-bar"></span>
-            <span className="icon-bar"></span>
-            </button>
+
          </div>
 
-            <div className="collapse navbar-collapse" id="collapse-menu">
+            <div >
               { list }
             </div>
 
