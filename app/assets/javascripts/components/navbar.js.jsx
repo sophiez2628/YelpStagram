@@ -57,7 +57,7 @@ navContent: function () {
   } else {
     return (
       <ul className="nav navbar-nav pull-right">
-        <li onClick={this.signDemoUserIn}><a href="javascript:void(0)" id="log-in">demo user</a></li>
+        <li onClick={this.signDemoUserIn}><a id="log-in">demo user</a></li>
         <li><a href="/session/new" id="log-in">sign in</a></li>
         <li><a href="/users/new" id="log-in">sign up</a></li>
       </ul>
