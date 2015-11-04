@@ -2,14 +2,14 @@
 
   var CHANGE_EVENT = "change";
   var _photos = [];
-  var _photo;
+  var _photo = [];
   var resetPhotos = function(photos){
     _photos = photos;
     PhotosStore.onChange();
   };
 
   var resetPhoto = function(photo){
-    _photo = photo;
+    _photo = [photo];
     PhotosStore.onChange();
   };
 
@@ -19,7 +19,7 @@
     },
 
     one: function() {
-      return _photo;
+      return _photo.concat(_photos);
     },
 
     findPhoto: function(place_id) {

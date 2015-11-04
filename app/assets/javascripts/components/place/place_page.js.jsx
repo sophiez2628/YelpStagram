@@ -38,7 +38,8 @@ var PlacePage = React.createClass({
   },
 
   onPhotosChange: function() {
-    this.setState({ photos: PhotosStore.all() });
+    this.setState({ photos: PhotosStore.one() });
+    debugger;
   },
 
   onPlaceChange: function() {
