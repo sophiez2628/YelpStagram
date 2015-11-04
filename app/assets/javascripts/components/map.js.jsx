@@ -11,7 +11,7 @@ var Map = React.createClass({
     var find, near, lat, lng;
     if (query) {
       find = query.find;
-      near = query.near;
+      near = { lat: parseFloat(query.near.lat), lng: parseFloat(query.near.lng) };
     } else {
       find = "food";
       near = { lat: 37.7749290, lng: -122.4194160 };
@@ -24,7 +24,6 @@ var Map = React.createClass({
       keyword: find
     };
     var service = new google.maps.places.PlacesService(this.map);
-
     service.radarSearch(request, function(places) {
       //response from google api
       if (places) {
@@ -37,15 +36,14 @@ var Map = React.createClass({
     QueryStore.addChangeListener(this.onQueryChange);
     MapStore.addChangeListener(this.onMouseOverChange);
     var map = React.findDOMNode(this.refs.map);
-
     var mapOptions;
-    if (this.state.query) {
+    this.map = new google.maps.Map(map, mapOptions);
+    window.map = new google.maps.Map(map, mapOptions);
+    if (this.state.query || (this.props.location && this.props.location.query.find)) {
       //map should only have a prop in the individual page
-      this.fetchFromGoogleAPI(this.state.query);
+      this.state.query ? this.fetchFromGoogleAPI(this.state.query) : this.fetchFromGoogleAPI(this.props.location.query)
     } else {
       //need to readjust mapOptions so that the focus is on the search result
-      this.map = new google.maps.Map(map, mapOptions);
-      window.map = new google.maps.Map(map, mapOptions);
       this.fetchFromGoogleAPI();
       this.props.mount && this.props.mount();
       if (this.props.place) {
@@ -66,8 +64,14 @@ var Map = React.createClass({
         marker.setMap(window.map);
       }
     }
+
   },
 
+  componentDidUpdate: function() {
+    if (this.props.location && this.props.location.query.find) {
+      this.fetchFromGoogleAPI(this.props.location.query);
+    }
+  },
 
 
   onMouseOverChange: function() {

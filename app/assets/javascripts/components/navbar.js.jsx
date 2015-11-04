@@ -24,11 +24,6 @@ componentDidMount: function() {
 //when user submits form
 handleSubmit: function(e) {
   e.preventDefault();
-  if (this.props.params.placeId) {
-    //needs to be fixed
-    this.history.pushState(null, '/');
-  }
-  //empty string if no user input
   var find = e.currentTarget.find.value;
   var place = this.autocomplete.getPlace();
   var lat;
@@ -42,9 +37,17 @@ handleSubmit: function(e) {
     lng = this.pos.lng;
   }
   var query = {find: find, near: {lat: lat, lng: lng}};
-  //pass the find and near info to search results page as a query
-  //fire API Action to cause Map to perform search again
-  ApiActions.receiveQuery(query);
+
+  if (this.props.params.placeId || this.props.location.query) {
+    //does not fire ApiAction, instead pushes state
+    console.log(query);
+    this.history.pushState(null, '/', query);
+  } else {
+    //empty string if no user input
+    //pass the find and near info to search results page as a query
+    //fire API Action to cause Map to perform search again
+    ApiActions.receiveQuery(query);
+  }
 },
 
 navContent: function () {
@@ -76,7 +79,6 @@ signDemoUserIn: function() {
     }.bind(this),
     error: function (response) {
       console.log(response);
-      console.log("Something went wrong.");
     }
   });
 },
