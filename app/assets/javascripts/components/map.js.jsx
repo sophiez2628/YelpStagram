@@ -37,24 +37,38 @@ var Map = React.createClass({
     QueryStore.addChangeListener(this.onQueryChange);
     MapStore.addChangeListener(this.onMouseOverChange);
     var map = React.findDOMNode(this.refs.map);
+
     var mapOptions;
     if (this.state.query) {
       //map should only have a prop in the individual page
       this.fetchFromGoogleAPI(this.state.query);
     } else {
       //need to readjust mapOptions so that the focus is on the search result
-      mapOptions = {
-        center: {lat: 37.7758, lng: -122.435},
-        zoom: 14
-
-      };
-      // SearchResultsStore.addChangeListener(this.onSearchResultsChange);
       this.map = new google.maps.Map(map, mapOptions);
       window.map = new google.maps.Map(map, mapOptions);
       this.fetchFromGoogleAPI();
       this.props.mount && this.props.mount();
+      if (this.props.place) {
+        var place = this.props.place;
+        var lat = place.geometry.location.lat();
+        var lng = place.geometry.location.lng();
+        mapOptions = {
+          center: {lat: lat, lng: lng},
+          zoom: 14
+        };
+
+        window.map = new google.maps.Map(map, mapOptions);
+        this.fetchFromGoogleAPI();
+
+        var marker = new google.maps.Marker({
+          position: {lat: lat, lng: lng }
+        });
+        marker.setMap(window.map);
+      }
     }
   },
+
+
 
   onMouseOverChange: function() {
     //marker is placed on window.map
@@ -71,32 +85,32 @@ var Map = React.createClass({
     }.bind(this));
   },
 
-  componentWillReceiveProps: function(prop) {
-    //for each individual page
-    if (!prop.place) {
-      this.fetchFromGoogleAPI();
-    } else {
-      // var map = React.findDOMNode(this.refs.map);
-      var lat;
-      var lng;
-      if (prop.place.place_id) {
-        lat = prop.place.geometry.location.lat();
-        lng = prop.place.geometry.location.lng();
-      } else {
-        lat = prop.place.lat;
-        lng = prop.place.lng;
-      }
-      var mapOptions = {
-        center: {lat: lat, lng: lng},
-        zoom: 13
-      };
-      this.map.setCenter({lat: lat, lng: lng});
-      var marker = new google.maps.Marker({
-        position: {lat: lat, lng: lng }
-      });
-      marker.setMap(this.map);
-    }
-  },
+  // componentWillReceiveProps: function(prop) {
+  //   debugger;
+  //   //for each individual page
+  //   // if (prop.place) {
+  //   //   // var map = React.findDOMNode(this.refs.map);
+  //   //   debugger;
+  //   //   var lat;
+  //   //   var lng;
+  //   //   if (prop.place.place_id) {
+  //   //     lat = prop.place.geometry.location.lat();
+  //   //     lng = prop.place.geometry.location.lng();
+  //   //   } else {
+  //   //     lat = prop.place.lat;
+  //   //     lng = prop.place.lng;
+  //   //   }
+  //   //   var mapOptions = {
+  //   //     center: {lat: lat, lng: lng},
+  //   //     zoom: 13
+  //   //   };
+  //   //   this.map.setCenter({lat: lat, lng: lng});
+  //   //   var marker = new google.maps.Marker({
+  //   //     position: {lat: lat, lng: lng }
+  //   //   });
+  //   //   marker.setMap(this.map);
+  //   // }
+  // },
 
 
   render: function() {
