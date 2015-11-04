@@ -73,7 +73,6 @@ signDemoUserIn: function() {
     data: {user: {email: "demo_user@gmail.com", password: "demo_user"} },
     success: function(user) {
       window.location = "/";
-      this.forceUpdate();
     }.bind(this)
   });
 },
