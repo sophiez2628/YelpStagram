@@ -65,14 +65,15 @@ navContent: function () {
   }
 },
 
-signDemoUserIn: function() {
+signDemoUserIn: function(e) {
+  e.preventDefault();
   $.ajax({
     url: '/session',
     type: 'POST',
     dataType: 'json',
     data: {user: {email: "demo_user@gmail.com", password: "demo_user"} },
     success: function(user) {
-      window.location.href = "/";
+      window.location = "/";
     }.bind(this)
   });
 },
