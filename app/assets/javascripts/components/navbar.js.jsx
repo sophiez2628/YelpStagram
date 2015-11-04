@@ -72,8 +72,7 @@ signDemoUserIn: function() {
     dataType: 'json',
     data: {user: {email: "demo_user@gmail.com", password: "demo_user"} },
     success: function(user) {
-      window.CURRENT_USER_ID = user.id;
-      window.location = "/";
+      window.location.href = "/";
     }.bind(this)
   });
 },
