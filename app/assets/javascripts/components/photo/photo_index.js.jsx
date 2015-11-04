@@ -39,12 +39,18 @@ var PhotoIndex = React.createClass({
         <Slider {...settings}>
         {
           this.props.photos.map(function(photo) {
-            if (photo.getUrl) {
+            var key_id;
+            if (photo && photo.getUrl) {
               src = photo.getUrl({'maxWidth': 200, 'maxHeight': 200});
-            } else {
+              key_id = photo.id;
+            } else if (photo) {
               src = photo.url;
+              key_id = photo.id;
+            } else {
+              src = "http://www.arinow.org/wp-content/uploads/2015/03/placeholder.jpg";
+              key_id = 0;
             }
-            return <div id="place-photo" key={photo.id}><img src={src}></img></div>;
+            return <div id="place-photo" key={key_id}><img src={src}></img></div>;
           })
         }
       </Slider>
