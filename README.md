@@ -1,8 +1,8 @@
 # YelpStagram
 
-[Heroku link][heroku] **NB:** This should be a link to your production site
+You can visit the website at [yelpstagram.com][heroku]
 
-[heroku]: http://www.herokuapp.com
+[heroku]: http://www.yelpstagram.com
 
 ## Minimum Viable Product
 
@@ -17,7 +17,7 @@ and React.js. YelpStagram allows users to:
 - [ ] User can upload pictures
 - [ ] User can search for places and see the location on Google Maps on the search result page
 - [ ] User can also search for places using keywords  
-- [ ] User can also search for places using their current location by letting browser access current location and not providing any input to the 'near' input box 
+- [ ] User can also search for places using their current location by letting browser access current location and not providing any input to the 'near' input box
 
 ## Design Docs
 * [View Wireframes][view]
