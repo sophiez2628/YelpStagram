@@ -32,7 +32,7 @@ var PhotoIndex = React.createClass({
       slidesToScroll: 1
     };
 
-    console.log(this.state.photos)
+
 
     return (
       <div id="place-photos">

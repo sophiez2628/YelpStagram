@@ -29,9 +29,8 @@ var SearchResults = React.createClass({
                                    />
                                );
             i++;
-            this.setState({ searchResultItems: searchResultItems });
           }
-
+            this.setState({ searchResultItems: searchResultItems });
         }.bind(this), 400
       );
     }.bind(this));

@@ -27,6 +27,7 @@ var Map = React.createClass({
     service.radarSearch(request, function(places) {
       //response from google api
       if (places) {
+        console.log(places);
         ApiActions.receiveGooglePlaces(places);
       }
     }.bind(this));

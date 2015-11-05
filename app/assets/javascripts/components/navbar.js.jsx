@@ -40,7 +40,7 @@ handleSubmit: function(e) {
 
   if (this.props.params.placeId || this.props.location.query) {
     //does not fire ApiAction, instead pushes state
-    console.log(query);
+
     this.history.pushState(null, '/', query);
   } else {
     //empty string if no user input
@@ -78,7 +78,7 @@ signDemoUserIn: function() {
       window.location = "/";
     }.bind(this),
     error: function (response) {
-      console.log(response);
+
     }
   });
 },
