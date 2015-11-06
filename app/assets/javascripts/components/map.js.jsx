@@ -26,11 +26,24 @@ var Map = React.createClass({
     var service = new google.maps.places.PlacesService(this.map);
     service.radarSearch(request, function(places) {
       //response from google api
+      this.hideNoPlaceFound();
       if (places) {
         console.log(places);
-        ApiActions.receiveGooglePlaces(places);
+        if (places.length === 0) {
+          this.showNoPlaceFound();
+        } else {
+          ApiActions.receiveGooglePlaces(places);
+        }
       }
     }.bind(this));
+  },
+
+  showNoPlaceFound: function() {
+    document.getElementById('abc').style.display = "block";
+  },
+
+  hideNoPlaceFound: function() {
+    document.getElementById('abc').style.display = "none";
   },
 
   componentDidMount: function(){
@@ -129,6 +142,9 @@ var Map = React.createClass({
     return (
       <div className={name}>
         <div className={name} ref="map" id="map"></div>
+        <div id="abc">
+          <div id="pop-up"><h2 id="pop-up-message">No places found. Please try a different keyword or location.</h2></div>
+        </div>
       </div>
     );
   }
