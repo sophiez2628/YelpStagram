@@ -5,7 +5,7 @@
 [heroku]: http://www.yelpstagram.com
 
 
-YelpStagram is a web application inspired by Yelp and Instagram built using Ruby on Rails and React.js. YelpStagram has the following main functionalities:
+YelpStagram is a web application inspired by Yelp and Instagram and built using Ruby on Rails and React.js. YelpStagram has the following main functionalities:
 
 
 * create an account
